@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;800&family=Fira+Code:wght@405;500;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  @apply transition-colors duration-200;
+}
+
+/* Bento Card Style */
+.bento-card {
+  @apply bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-white/5 rounded-2xl p-5 hover:border-blue-600 dark:hover:border-blue-500 transition-all duration-200 shadow-sm relative overflow-hidden;
+}
+
+.bento-card:hover {
+  @apply border-blue-600 dark:border-blue-500 shadow-md transform -translate-y-0.5;
+}
+
+/* Glass card gradient */
+.bento-glass {
+  @apply bg-blue-50/40 dark:bg-gradient-to-br dark:from-blue-600/10 dark:to-indigo-600/10 border border-slate-200/80 dark:border-blue-500/20 rounded-2xl p-5 hover:border-blue-600 dark:hover:border-blue-400 transition-all duration-200 shadow-sm relative overflow-hidden;
+}
+
+/* Bento Icon Box style for Lucide icons container */
+.bento-icon-box {
+  @apply w-10 h-10 rounded-lg flex items-center justify-center text-white mb-3 shadow-xs transition-transform duration-200;
+}
+
+.bento-card:hover .bento-icon-box {
+  @apply scale-105;
+}
+
+/* Custom styles */
+.bento-mono {
+  @apply font-mono text-xs tracking-tight;
+}
+
+/* Subtle glowing animations */
+@keyframes bento-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+.bento-glow {
+  @apply absolute -right-12 -top-12 w-32 h-32 bg-blue-500/10 dark:bg-blue-400/5 blur-3xl rounded-full pointer-events-none;
+}

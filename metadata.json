@@ -1,0 +1,6 @@
+{
+  "name": "NexusUtils",
+  "description": "A premium SaaS platform offering 20+ professional tools for developers, content creators, finance, image, and PDF processing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
