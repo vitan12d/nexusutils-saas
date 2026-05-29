@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6578699459805240"
+         crossorigin="anonymous"></script>
+    <script>
+      // Prevent TypeError when third-party libraries or polyfills attempt to overwrite window.fetch in sandboxed iframe environment
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          if (originalFetch) {
+            var fetchDescriptor = {
+              get: function() { return originalFetch; },
+              set: function(val) { originalFetch = val; },
+              configurable: true,
+              enumerable: true
+            };
+            Object.defineProperty(window, 'fetch', fetchDescriptor);
+            if (typeof globalThis !== 'undefined' && globalThis !== window) {
+              Object.defineProperty(globalThis, 'fetch', fetchDescriptor);
+            }
+          }
+        } catch (e) {
+          console.warn("Could not patch window.fetch property descriptor safely:", e);
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexusUtils | أدوات رقمية مجانية وآمنة 100% | Free All-in-One SaaS Tools</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><text y=%2270%22 x=%2220%22 font-family=%22sans-serif%22 font-size=%2265%22 font-weight=%22bold%22 fill=%22white%22>N</text></svg>" />
+    <!-- Meta Descriptions -->
+    <meta name="description" content="منصة NexusUtils الموحدة للأدوات الرقمية المجانية. دمج وتعديل ملفات PDF، ضغط الصور، تحليل وتنسيق الأكواد، صانع الفواتير، ومساعد ذكاء اصطناعي محلي آمن 100%. Free client-side SaaS tools for PDF, Images, Coding helpers, Invoice building, and local AI helpers." />
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://nexusutils.online/" />
+    <!-- Open Graph (OG) Facebook & LinkedIn -->
+    <meta property="og:title" content="NexusUtils | أدوات رقمية مجانية وآمنة 100% | All-in-One SaaS Tools" />
+    <meta property="og:description" content="منصة موحدة للأدوات الرقمية المجانية. تعديل PDF، ضغط الصور، الأكواد، الفواتير، وتحليل النصوص محلياً بالكامل آمن 100%. All-in-One client-side safe utilities." />
+    <meta property="og:url" content="https://nexusutils.online/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1000 500%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%231e3a8a%22/><stop offset=%22100%25%22 stop-color=%22%232563eb%22/></linearGradient></defs><rect width=%22100%25%22 height=%22100%25%22 fill=%22url(%23g)%22/><text font-family=%22sans-serif%22 font-size=%2280%22 font-weight=%22black%22 fill=%22white%22 x=%22100%22 y=%22240%22>NexusUtils</text><text font-family=%22sans-serif%22 font-size=%2232%22 font-weight=%22bold%22 fill=%22%2393c5fd%22 x=%22100%22 y=%22310%22>20+ Free, Secure, Client-Side Digital Tools</text></svg>" />
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NexusUtils | All-in-One Free Secure SaaS Tools" />
+    <meta name="twitter:description" content="Free client-side digital utilities safely computed inside your browser. PDF merging, image compressing, text density calculators, developer blocks, and billing." />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
