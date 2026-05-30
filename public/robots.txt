@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+
+# Prevent crawling of sensitive source structures, package configs, and API maps
+Disallow: /src/
+Disallow: /firebase-*.json
+Disallow: /package*.json
+Disallow: /tsconfig.json
+Disallow: /metadata.json
+Disallow: /vite.config.ts
+Disallow: /.env*
+
+# Sitemap Location
+Sitemap: https://nexusutils.online/sitemap.xml
