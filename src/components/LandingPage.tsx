@@ -3,6 +3,7 @@ import { Sparkles, ArrowRight, ChevronRight, FileText, Image as ImageIcon, Type,
 interface LandingPageProps {
   onExplore: () => void;
   onSelectCategory: (cat: string) => void;
+  onNavigateSlug: (slug: string) => void;
 }
 
 const CATEGORY_ICONS: Record<string, any> = {
@@ -14,7 +15,18 @@ const CATEGORY_ICONS: Record<string, any> = {
   seo: SearchIcon,
 };
 
-export default function LandingPage({ onExplore, onSelectCategory }: LandingPageProps) {
+export default function LandingPage({ onExplore, onSelectCategory, onNavigateSlug }: LandingPageProps) {
+  const POPULAR_SEO_PAGES = [
+    { name: 'Merge PDF', slug: 'merge-pdf', desc: 'Securely combine multiple PDF documents into a single file.', catName: 'PDF' },
+    { name: 'Compress PDF', slug: 'compress-pdf', desc: 'Squeeze PDF file sizes without losing page readability.', catName: 'PDF' },
+    { name: 'JSON Formatter & Validator', slug: 'json-formatter', desc: 'Validate, beautify, and compress JSON payloads instantly.', catName: 'Developer' },
+    { name: 'Base64 Encoder', slug: 'base64-encoder', desc: 'Convert Unicode strings to Base64 or decode back securely.', catName: 'Developer' },
+    { name: 'Regex Tester', slug: 'regex-tester', desc: 'Build and debug ECMAScript RegExp structures in real-time.', catName: 'Developer' },
+    { name: 'Meta Tag Generator', slug: 'meta-tag-generator', desc: 'Formulate search-optimized tags for Google indexing.', catName: 'SEO Setup' },
+    { name: 'Robots.txt Generator', slug: 'robots-generator', desc: 'Configure search crawler protocols and exclude directories.', catName: 'SEO Setup' },
+    { name: 'Compress Image', slug: 'compress-image', desc: 'Optimize PNG, JPEG, and WebP dimensions and weight.', catName: 'Images' },
+    { name: 'WebP / ICO Converter', slug: 'webp-converter', desc: 'Shave off assets size by migrating images to next-gen WebP format.', catName: 'Images' }
+  ];
   const landingCategories = [
     {
       id: 'pdf',
@@ -116,6 +128,45 @@ export default function LandingPage({ onExplore, onSelectCategory }: LandingPage
           <div className="text-center space-y-3.5">
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Productivity Toolbox</h2>
             <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Engineered with zero-server latency tracking & secure containers</p>
+          </div>
+
+          {/* Primary SEO Tools Directory links block */}
+          <div className="space-y-4">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 pl-1">Direct Search Portals (Interactive SEO Suite)</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+              {POPULAR_SEO_PAGES.map((page) => (
+                <a
+                  key={page.slug}
+                  href={`/tools/${page.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateSlug(page.slug);
+                  }}
+                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/60 hover:border-blue-500/80 dark:hover:border-blue-500/40 hover:-translate-y-0.5 transition duration-200 flex flex-col justify-between group cursor-pointer shadow-3xs"
+                >
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] font-extrabold uppercase bg-blue-500/10 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-mono">
+                        {page.catName}
+                      </span>
+                      <span className="text-blue-600 dark:text-blue-405 text-xs font-bold opacity-0 group-hover:opacity-100 transition duration-155 transform translate-x-1 group-hover:translate-x-0">
+                        Use Now →
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-extrabold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-405 transition-colors">
+                      {page.name}
+                    </h4>
+                    <p className="text-xs text-slate-550 dark:text-slate-400 leading-relaxed font-semibold">
+                      {page.desc}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-slate-200/80 dark:border-slate-800/55 pt-10 text-center">
+            <h3 className="text-xs font-black uppercase tracking-widest text-slate-450 dark:text-slate-500 mb-2">Or Explore Complete Sandbox Suites</h3>
           </div>
 
           {/* Dynamic Bento-Grid Layout of Category Cards */}

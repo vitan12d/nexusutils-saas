@@ -470,11 +470,12 @@ function ToolsHubOverview({
 
 interface DashboardProps {
   initialCategoryId?: string;
+  initialToolId?: string;
   onGoHome: () => void;
   onGoStaticPage: (pageId: string) => void;
 }
 
-export default function Dashboard({ initialCategoryId, onGoHome, onGoStaticPage }: DashboardProps) {
+export default function Dashboard({ initialCategoryId, initialToolId, onGoHome, onGoStaticPage }: DashboardProps) {
   const [activeCategory, setActiveCategory] = useState<ToolCategory | 'all'>(
     (initialCategoryId as ToolCategory) || 'all'
   );
@@ -497,8 +498,18 @@ export default function Dashboard({ initialCategoryId, onGoHome, onGoStaticPage 
     }
   }, [darkMode]);
 
-  // Handle outside landing category triggers
+  // Handle outside landing category or tool triggers
   useEffect(() => {
+    if (initialToolId) {
+      const match = TOOLS.find(t => t.id === initialToolId);
+      if (match) {
+        setActiveTool(match);
+        setActiveCategory(match.category);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+    }
+
     if (initialCategoryId) {
       setActiveCategory(initialCategoryId as ToolCategory);
       setActiveTool(null);
@@ -506,7 +517,7 @@ export default function Dashboard({ initialCategoryId, onGoHome, onGoStaticPage 
       setActiveCategory('all');
       setActiveTool(null);
     }
-  }, [initialCategoryId]);
+  }, [initialCategoryId, initialToolId]);
 
   const filteredTools = TOOLS.filter((tool) => {
     const matchesCategory = activeCategory === 'all' || tool.category === activeCategory;

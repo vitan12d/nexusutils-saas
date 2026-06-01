@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://nexusutils.online/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <!-- Core Static Pages -->
+  <url>
+    <loc>https://nexusutils.online/resources</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://nexusutils.online/blog</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- 29 Advanced Tools Landing Pages -->
+  <url><loc>https://nexusutils.online/tools/merge-pdf</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/compress-pdf</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/pdf-to-word</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/compress-image</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/resize-image</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/convert-image</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/word-counter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/character-counter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/case-converter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/lorem-ipsum-generator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/invoice-generator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/tax-calculator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/currency-converter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/json-formatter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/base64-encoder</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/password-generator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/color-picker</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/meta-tag-generator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/keyword-density-checker</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/robots-generator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/ai-writing-assistant</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/json-to-go-java</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/js-obfuscator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/sql-formatter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/diff-checker</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/regex-tester</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/google-snippet-simulator</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/image-to-base64</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://nexusutils.online/tools/webp-converter</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+</urlset>

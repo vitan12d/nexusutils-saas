@@ -93,8 +93,29 @@ function MergePdf() {
     }
   };
 
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "Are my uploaded PDF files saved on any database?",
+      a: "No, absolutely not. All merging, rendering, and processing occurs in your browser's local sandbox environment using standard HTML5 Canvas and internal JavaScript arrays. No data, files, or information ever leaves your local network router, creating a secure, 100% private sandbox."
+    },
+    {
+      q: "Is there a cap on the maximum number of files?",
+      a: "The PDF Merge widget supports processing up to 10 discrete PDF documents simultaneously with file sizes of up to 50MB each. These limitations prevent browser memory allocation crashes and guarantee speed across mobile platforms."
+    },
+    {
+      q: "Does the tool support encrypted or password-protected files?",
+      a: "This client-side merger cannot process encrypted, locked, or protected files unless the password protection has been removed first. If you have an encrypted PDF, unlock it using an authorized decryption tool prior to queueing it for compile."
+    },
+    {
+      q: "Will the page order and layout remain unchanged?",
+      a: "Yes. The utility extracts and merges individual page indices without distorting text flow, modifying page layout, or compressing fonts. The original dimensions, color metrics, and content densities are fully preserved inside the merged output."
+    }
+  ];
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in text-left">
       <div className="p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-4">Select and Arrange PDF Files</h3>
 
@@ -108,8 +129,8 @@ function MergePdf() {
             id="pdf-upload-input"
           />
           <Upload className="h-10 w-10 text-slate-400 group-hover:text-blue-500 transition-colors mb-3" />
-          <p className="text-slate-600 dark:text-slate-400 font-medium">Click or Drag PDF files here to select</p>
-          <p className="text-xs text-slate-400 mt-1">Supports up to 10 files (max 50MB per file)</p>
+          <p className="text-slate-600 dark:text-slate-400 font-medium text-center">Click or Drag PDF files here to select</p>
+          <p className="text-xs text-slate-400 mt-1 text-center">Supports up to 10 files (max 50MB per file)</p>
         </div>
 
         {files.length > 0 && (
@@ -158,7 +179,7 @@ function MergePdf() {
               <button
                 onClick={mergePdfs}
                 disabled={loading || files.length < 2}
-                className="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-300 dark:disabled:bg-slate-800 text-white font-semibold rounded-lg shadow transition duration-250 flex items-center justify-center gap-2"
+                className="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-300 dark:disabled:bg-slate-800 text-white font-semibold rounded-lg shadow transition duration-250 flex items-center justify-center gap-2 cursor-pointer"
               >
                 {loading ? (
                   <>
@@ -174,7 +195,7 @@ function MergePdf() {
               </button>
               <button
                 onClick={() => setFiles([])}
-                className="py-3 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold rounded-lg transition"
+                className="py-3 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold rounded-lg transition cursor-pointer"
               >
                 Clear All
               </button>
@@ -195,9 +216,71 @@ function MergePdf() {
         {error && (
           <div className="mt-4 p-4 bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-900/60 rounded-lg flex items-center gap-3">
             <AlertTriangle className="h-5 w-5 shrink-0" />
-            <p className="text-smfont-medium">{error}</p>
+            <p className="text-sm font-medium">{error}</p>
           </div>
         )}
+      </div>
+
+      {/* SEO Optimized Article for AdSense */}
+      <article className="p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800/80 pb-3">
+          The Technical Architecture of Client-Side PDF Compilation
+        </h2>
+        
+        <p className="text-slate-650 dark:text-slate-350 text-sm leading-relaxed font-normal">
+          Portable Document Format (PDF) files are notoriously difficult to edit, reassemble, and manipulate. Most internet services address this by forcing you to upload your files to external remote servers, rendering you dependent on their security layers. At NexusUtils, we utilize an elite, 100% decentralized client-side execution framework.
+        </p>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">1. Zero-Server Privacy Paradigm</h3>
+          <p className="text-slate-650 dark:text-slate-355 text-sm leading-relaxed">
+            Unlike traditional SaaS environments, our local PDF merger compiles documents entirely in your web browser utilizing Web JavaScript memory modules. This ensures that personal records, medical filings, sensitive contracts, and academic credentials remain insulated inside your device's V8 Javascript engine. The moment you close your browser tab, all buffer memory arrays are cleared, satisfying stringent international compliance standards including GDPR, HIPAA, and CCPA.
+          </p>
+
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">2. Optimizing Your PDF Compilation Workflow</h3>
+          <p className="text-slate-650 dark:text-slate-355 text-sm leading-relaxed">
+            To achieve professional-grade results when stitching documents, follow these core technical guidelines:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+            <li><strong>Maintain Scale Consistency:</strong> Ensure all input files share standard dimensions (such as standard A4 or Letter sizes) to prevent layout shifting across combined pages.</li>
+            <li><strong>Pre-Compress High-Res Scans:</strong> Combined documents containing high-DPI image graphics can inflate the final output size. Optimize or compress image assets inside PDFs prior to stitching to save bandwidth during delivery.</li>
+            <li><strong>Sequential Ordering:</strong> Our drag-and-drop tool automatically orders documents from top to bottom. Order files sequentially before merging to make your output seamless.</li>
+          </ul>
+
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">3. Digital Integrity and Metadata Preservations</h3>
+          <p className="text-slate-650 dark:text-slate-355 text-sm leading-relaxed">
+            Our local array assembler utilizes the leading <code>pdf-lib</code> structural layout engine. The engine copies raw stream layers, cataloging visual pages, embedded vectors, and textual layouts accurately. Note that while absolute hyperlinks and document structures are securely preserved, previous cryptographic digital signatures are automatically invalidated to prevent unauthorized authentication sharing across compound structures.
+          </p>
+        </div>
+      </article>
+
+      {/* Interactive FAQ Accordion section */}
+      <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div>
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+          <p className="text-sm text-slate-400 mt-1">Get transparent answers about security, performance benchmarks, and browser execution bounds.</p>
+        </div>
+
+        <div className="space-y-3">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="border border-slate-150 dark:border-slate-800/80 rounded-xl overflow-hidden bg-white dark:bg-slate-950/40 hover:border-slate-300 dark:hover:border-slate-700 transition duration-150">
+              <button
+                onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                className="w-full flex items-center justify-between p-4 bg-slate-50/50 dark:bg-slate-900/30 text-left cursor-pointer hover:text-blue-500 font-bold text-sm text-slate-800 dark:text-slate-100 gap-4"
+              >
+                <span>{faq.q}</span>
+                <span className={`text-slate-400 transform transition-transform duration-200 font-mono ${activeFaq === idx ? 'rotate-180 text-blue-500' : ''}`}>
+                  ▼
+                </span>
+              </button>
+              {activeFaq === idx && (
+                <div className="p-4 bg-white dark:bg-slate-900 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
