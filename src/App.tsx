@@ -141,6 +141,38 @@ export default function App() {
         return;
       }
 
+      // 5.6 Static Pages clean URLs: /about, /privacy, /terms, /contact, /faq
+      if (path === '/about' || path === '/about/') {
+        setActiveStaticPage('about');
+        setView('static');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+      if (path === '/privacy' || path === '/privacy/') {
+        setActiveStaticPage('privacy');
+        setView('static');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+      if (path === '/terms' || path === '/terms/') {
+        setActiveStaticPage('terms');
+        setView('static');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+      if (path === '/contact' || path === '/contact/') {
+        setActiveStaticPage('contact');
+        setView('static');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+      if (path === '/faq' || path === '/faq/') {
+        setActiveStaticPage('faq');
+        setView('static');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+
       // 6. Clean home or generic paths
       if (path === '/' || path === '') {
         setView('landing');
@@ -164,6 +196,7 @@ export default function App() {
   const showStaticPage = (pageId: string) => {
     setActiveStaticPage(pageId);
     setView('static');
+    window.history.pushState(null, '', `/${pageId}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -300,7 +333,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -410,7 +443,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -493,7 +526,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -571,7 +604,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -656,7 +689,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -748,7 +781,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
@@ -817,7 +850,7 @@ export default function App() {
                 ].map((p) => (
                   <a
                     key={p.id}
-                    href={`#${p.id}`}
+                    href={`/${p.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       showStaticPage(p.id);
