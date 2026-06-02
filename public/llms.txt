@@ -1,0 +1,32 @@
+# NexusUtils: Premium Developer Utilities & SEO Structuring Suite
+
+NexusUtils is a high-fidelity, privacy-first developer sandbox engineered to parse, construct, and validate programmatic data layers entirely inside client-side browser memory.
+
+## Core Capabilities & Endpoints
+
+- **JSON Formatter & Validator (`/tools/json-formatter`):** Clean, indent, and validate nested structures. Detects trailing commas and bad control characters.
+- **AI Meta Tag Generator (`/tools/seo-helper`):** Formulate click-through rich titles, desc, OpenGraph, and JSON-LD schemas via server-side Gemini proxies.
+- **UTM Campaign Link Builder (`/tools/utm-builder`):** Construct consistent marketing campaign tracking URLs.
+- **Secure Password Generator & Entropy Meter (`/tools/password-generator`):** Mathematically model password strength in cryptographic bits of entropy.
+- **Word Counter & Keyword Density Suite (`/tools/word-counter`):** Filter high-frequency stop-words to audit true keyword distribution.
+- **Device UA Parser Spec (`/tools/ua-parser`):** Dissect client HTTP request headers instantly.
+- **Smart PDF Box & Inspector (`/tools/pdf-hub`):** Compile document packages directly inside client browser RAM.
+- **Base64 & Hash Converter (`/tools/text-analyzer`):** Safe, offline encryption conversions.
+- **QR Code Generator (`/tools/qr-generator`):** High-contrast optic vector rendering.
+- **Markdown Editor Live (`/tools/markdown-editor`):** Responsive live split-pane parsing editor.
+
+## Authoritative Documentation & Guides
+
+- **Programmatic SEO Guide (`/blog/demystifying-programmatic-seo`):** Core index building secrets for long-tail search console indexing.
+- **AdSense Approval Guidelines (`/blog/adsense-approval-guidelines-utilities`):** Passing thin-content publisher audits.
+- **Ad Optimization Guide (`/blog/optimizing-ad-placement-retention`):** Maximizing CPM and display CTR.
+- **Security credential Databases (`/blog/securing-credential-databases-hashing-entropy`):** High-entropy hashes and DB salts.
+- **Core Web Vitals Blueprint (`/resources/core-web-vitals-optimization`):** Eliminating layout shifts (CLS) and optimizing interaction (INP).
+- **Technical SEO Checklist (`/resources/technical-seo-pre-launch`):** Dynamic XML sitemap parsing patterns.
+
+## Discoverability Configurations
+
+- **Sitemap Index:** `/sitemap.xml`
+- **Crawlability Configuration:** `/robots.txt`
+- **Authorized Seller Listings:** `/ads.txt`
+- **Main Client Interface:** `/dashboard`

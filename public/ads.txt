@@ -1,0 +1,6 @@
+# Google AdSense Publisher Authorization File (ads.txt)
+# Replace the publisher ID (pub-0000000000000000) with your actual Google AdSense Publisher ID.
+#
+# قم باستبدال الرمز (pub-0000000000000000) بمعرف الناشر الخاص بك في جوجل ادسنس.
+#
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

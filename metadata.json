@@ -1,0 +1,8 @@
+{
+  "name": "NexusUtils",
+  "description": "A premium suite of online utilities for developers, creators, and businesses, featuring an offline-first codebase and AI-powered SEO optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
