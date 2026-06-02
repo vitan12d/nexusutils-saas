@@ -1,0 +1,13 @@
+# NexusUtils Specification
+
+Free offline-first utility sandbox for developers, design creators, programmatic SEO growth hackers, and tech managers. All capabilities are completed fully in temporary sandboxed RAM matrices.
+
+## Core Capabilities
+- **Smart client-side PDF Hub & Inspector**: orientation configuration, margins management, and file parameters metadata checks.
+- **JSON Formatter & Validator**: Beautifies, parses, and identifies syntax errors on structural trees.
+- **High-Performance QR Code Generator**: Generates SVG tags, colors padding, and exports PNG design assets.
+- **Word Counter & Frequency Analyzer**: Tracks word lengths, content reading levels, sentence lengths, and SEO density vectors.
+- **Secure Password Strength Meter**: Inspects entropy levels and generates strong cryptographic passwords offline.
+- **Hash Converter**: Real-time MD5, SHA-1, SHA-256 transformations with high-entropy validation checks.
+- **UTM Tag Builder**: Easily outputs compliant campaign URLs.
+- **User-Agent Parser**: Inspects browser client features.
