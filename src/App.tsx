@@ -136,7 +136,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
-        
+        <div data-banner-id="1493244"></div>
         {/* Skip to Main Content Link for accessibility standard compliance */}
         <a 
           href="#main-content" 
