@@ -1,143 +1,112 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
-  BrowserRouter, Routes, Route, Link, useLocation
-} from 'react-router-dom';
-import { 
-  Terminal, Sparkles, Activity, BookOpen, Layers, ChevronRight, 
-  Check, ShieldAlert, CheckCircle2, Bot, Smartphone
+  Braces, 
+  FileText, 
+  Link2, 
+  ShieldCheck, 
+  BarChart3, 
+  Key, 
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  Globe,
+  Zap,
+  ChevronRight
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
-
-// استيراد البيانات والمكونات الأساسية لموقعك
-import { categories, tools, blogArticles, resources } from './data';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import CommandPalette from './components/CommandPalette';
-
-// استيراد صفحة التوجيه الجديدة التي أنشأناها في الخطوة الأولى
 import GoPage from './components/GoPage';
 
-export default function App() {
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    const saved = localStorage.getItem('nexus-pref-theme');
-    return saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  });
-  const [paletteOpen, setPaletteOpen] = useState(false);
-  const [showCookie, setShowCookie] = useState(() => !localStorage.getItem('nexus-cookie-accept'));
-
+// مكون التحويل الفوري المخصص لحسابات الترافيك المتعددة لـ Adsterra
+const AdsterraRedirect: React.FC = () => {
   useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-      localStorage.setItem('nexus-pref-theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('nexus-pref-theme', 'light');
-    }
-  }, [darkMode]);
+    // التوجيه التلقائي الفوري إلى رابط الـ Smartlink الخاص بك
+    window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+  }, []);
 
   return (
-    <BrowserRouter>
-      <AppShell 
-        darkMode={darkMode} 
-        setDarkMode={setDarkMode} 
-        paletteOpen={paletteOpen} 
-        setPaletteOpen={setPaletteOpen} 
-        showCookie={showCookie} 
-        setShowCookie={setShowCookie} 
-      />
-    </BrowserRouter>
-  );
-}
-
-// هنا نقوم بفحص المسار الحالي: إذا كان الرابط هو /go نقوم بإخفاء العناصر الثابتة كلياً
-function AppShell({ darkMode, setDarkMode, paletteOpen, setPaletteOpen, showCookie, setShowCookie }: any) {
-  const location = useLocation();
-  const isBridgePage = location.pathname === '/go'; // شرط فحص صفحة التوجيه
-
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
-      
-      {/* 1. عرض الـ Navbar فقط إذا لم نكن في صفحة التوجيه */}
-      {!isBridgePage && (
-        <Navbar 
-          onSearchClick={() => setPaletteOpen(true)} 
-          darkMode={darkMode} 
-          setDarkMode={setDarkMode} 
-        />
-      )}
-
-      <main className="flex-1 outline-none">
-        <Routes>
-          {/* الرابط الجديد لصفحة التوجيه المعزولة */}
-          <Route path="/go" element={<GoPage />} />
-
-          {/* المسار الأساسي للموقع (الصفحة الرئيسية) */}
-          <Route path="/" element={<HomePage />} />
-          
-          {/* باقي مسارات موقعك الفرعية تضعها هنا كما هي */}
-          <Route path="*" element={<div className="p-10 text-center">Module Active</div>} />
-        </Routes>
-      </main>
-
-      {/* 2. عرض الـ Footer فقط إذا لم نكن في صفحة التوجيه */}
-      {!isBridgePage && <Footer />}
-
-      <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
-
-      {/* 3. إخفاء إشعار الكوكيز في صفحة التوجيه حتى لا يغطي على الإعلانات */}
-      <AnimatePresence>
-        {showCookie && !isBridgePage && (
-          <motion.div className="fixed bottom-4 right-4 max-w-sm bg-white dark:bg-slate-900 border p-4 rounded-xl shadow-xl z-50 space-y-3">
-            <div className="flex items-start gap-2">
-              <ShieldAlert className="h-4 w-4 text-blue-500 shrink-0" />
-              <p className="text-[11px] text-slate-500 leading-relaxed font-mono">
-                We use localized state to configure visual preferences. No tracking templates are injected.
-              </p>
-            </div>
-            <div className="flex justify-end">
-              <button
-                onClick={() => { localStorage.setItem('nexus-cookie-accept', 'true'); setShowCookie(false); }}
-                className="bg-blue-600 text-white font-semibold text-[10px] uppercase px-3 py-1.5 rounded cursor-pointer"
-              >
-                Accept
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div style={{ background: '#0f172a', color: 'white', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui, sans-serif' }}>
+      <div style={{ textAlign: 'center' }}>
+        <p style={{ fontSize: '18px', marginBottom: '10px' }}>Redirecting to secure link...</p>
+        <div style={{ width: '40px', height: '40px', border: '4px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto' }}></div>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
     </div>
   );
-}
+};
 
-/* ==========================================================================
-   المكون الخاص بالصفحة الرئيسية للموقع (مبسط ومتوافق مع بياناتك الحالية)
-   ========================================================================== */
-function HomePage() {
+// المكون الرئيسي للموقع (الصفحة الرئيسية الفعالة)
+const MainLayout: React.FC = () => {
   return (
-    <div className="space-y-24 pb-20 pt-20 text-center max-w-7xl mx-auto px-4">
-      <div className="space-y-6">
-        <div className="inline-flex items-center gap-1.5 bg-blue-50 dark:bg-blue-500/10 text-xs text-blue-600 px-3 py-1 rounded-full font-mono font-bold uppercase">
-          <Sparkles className="h-3.5 w-3.5" /> NexusUtils Platform
-        </div>
-        <h1 className="font-display font-extrabold text-slate-900 dark:text-slate-50 tracking-tight text-4xl sm:text-6xl max-w-4xl mx-auto">
-          Free Online Tools for Developers & Creators
-        </h1>
-        <p className="text-slate-500 dark:text-slate-405 max-w-2xl mx-auto text-sm sm:text-base">
-          Powerful privacy-first utilities that work instantly in your browser. Complete offline data processing logic.
-        </p>
-      </div>
-
-      {/* عرض شبكة الأدوات المتاحة في موقعك */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-10">
-        {tools.map(tool => (
-          <div key={tool.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
-            <div className="p-2 bg-slate-50 dark:bg-slate-950 rounded-lg text-blue-600 w-fit mb-4"><Terminal className="h-5 w-5" /></div>
-            <span className="text-sm font-bold block text-slate-900 dark:text-slate-50">{tool.name}</span>
-            <p className="text-[11px] text-slate-500 mt-2 line-clamp-2 leading-relaxed">{tool.description}</p>
+    <div className="min-height-screen bg-slate-900 text-white font-sans">
+      {/* هيدر الموقع البسيط */}
+      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <Braces className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              NexusUtils
+            </span>
           </div>
-        ))}
-      </div>
+          <nav className="flex space-x-4">
+            <Link to="/go" className="text-sm font-medium text-slate-400 hover:text-white transition">Bridge Test</Link>
+          </nav>
+        </div>
+      </header>
+
+      {/* محتوى الصفحة الرئيسية الاستعراضي للأدوات */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+            Elite-Grade Developer Sandbox Software
+          </h1>
+          <p className="text-lg text-slate-400">
+            Zero Registrations. Client-First Isolation and Encryption. Securely process files and payloads entirely within local device memory.
+          </p>
+        </div>
+
+        {/* شبكة الأدوات */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-blue-500/50 transition">
+            <Braces className="h-8 w-8 text-blue-500 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">JSON Formatter & Parser</h3>
+            <p className="text-slate-400 text-sm">Rectify nested payloads, trailing commas, and unescaped characters locally.</p>
+          </div>
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
+            <Sparkles className="h-8 w-8 text-indigo-500 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">AI Meta Tag Generator</h3>
+            <p className="text-slate-400 text-sm">Inspect page keywords and construct structured JSON-LD schemas easily.</p>
+          </div>
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-cyan-500/50 transition">
+            <Link2 className="h-8 w-8 text-cyan-500 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">UTM Campaign Link Builder</h3>
+            <p className="text-slate-400 text-sm">Compile trackable target parameters for premium publisher campaigns.</p>
+          </div>
+        </div>
+      </main>
     </div>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* المسار الرئيسي للموقع */}
+        <Route path="/" element={<MainLayout />} />
+        
+        {/* صفحة العداد التنازلي الحالية المخصصة لإعلانات Clickadilla */}
+        <Route path="/go" element={<GoPage />} />
+
+        {/* مسارات الترافيك الفرعية للحسابات الجديدة (توجه تلقائياً لـ Adsterra Smartlink) */}
+        <Route path="/ads1" element={<AdsterraRedirect />} />
+        <Route path="/ads2" element={<AdsterraRedirect />} />
+        <Route path="/ads3" element={<AdsterraRedirect />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
