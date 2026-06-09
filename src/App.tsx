@@ -7,17 +7,17 @@ import {
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// مكون التحويل الهجومي المطور لإجبار البوتات على التفاعل والـ Scroll
+// مكون التحويل الهجومي المطور لإجبار البوتات المتصفحة على التفاعل والـ Scroll
 const AdsterraRedirect: React.FC = () => {
   useEffect(() => {
-    // 1. محاكاة نقرة وهمية لرفع الـ User Engagement فوراً
+    // 1. محاكاة نقرة وهمية لرفع الـ User Engagement فوراً داخل النظام
     const fakeClick = () => {
       const event = new MouseEvent('click', { view: window, bubbles: true, cancelable: true });
       document.body.dispatchEvent(event);
     };
     setTimeout(fakeClick, 100);
 
-    // 2. تفعيل التمرير التلقائي المتكرر صعوداً ونزولاً لكسر جمود البوت
+    // 2. تفعيل التمرير التلقائي المتكرر صعوداً ونزولاً لكسر جمود البوت وإجباره على التفاعل
     let scrollCount = 0;
     const scrollInterval = setInterval(() => {
       if (scrollCount % 2 === 0) {
@@ -29,7 +29,7 @@ const AdsterraRedirect: React.FC = () => {
       if (scrollCount > 6) clearInterval(scrollInterval);
     }, 150);
 
-    // 3. التوجيه النهائي الفوري باستخدام أسرع وسيلة حظر ومسح للتاريخ الإعلاني
+    // 3. التوجيه النهائي الفوري باستخدام أسلوب مسح السجل لفرض تحميل صفحة الإعلان
     const redirectTimer = setTimeout(() => {
       window.location.replace("https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338");
     }, 1800);
@@ -42,7 +42,7 @@ const AdsterraRedirect: React.FC = () => {
 
   return (
     <div style={{ background: '#0f172a', color: 'white', height: '300vh', position: 'relative', fontFamily: 'system-ui, sans-serif' }}>
-      {/* تضمين iframe مخفي للـ Smartlink لإجبار السيرفر على تحميل الإعلان مسبقاً قبل التحويل */}
+      {/* تضمين iframe مخفي للـ Smartlink لإجبار المتصفح على استدعاء كود الإعلان مسبقاً في الخلفية */}
       <iframe 
         src="https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338" 
         style={{ position: 'absolute', width: '1px', height: '1px', opacity: 0, top: 0, left: 0, border: 'none' }}
