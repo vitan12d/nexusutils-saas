@@ -18,7 +18,7 @@ const GoPage: React.FC = () => {
       });
     }, 1000);
 
-    // 2. تشغيل سكريبت إعلانات Clickadilla
+    // 2. تشغيل سكريبت إعلانات Clickadilla المضمون والمستقر
     const adsContainer = document.getElementById('bridge-ads-container');
     if (adsContainer) {
       adsContainer.innerHTML = ''; 
@@ -29,32 +29,9 @@ const GoPage: React.FC = () => {
       adsContainer.appendChild(adScript);
     }
 
-    // 3. حقن إعدادات إشعارات WP-Stock Push بطريقة آمنة تماماً على TypeScript
-    const inlineScript = document.createElement('script');
-    inlineScript.id = 'wp-push-inline-setup';
-    inlineScript.innerHTML = `
-      window.WPStockPushConfig = {
-        siteKey: "sk_2adb7d8680a2f7c7bb07d18fb8232947",
-        apiBase: "https://api.wp-stock.com",
-        promptDelay: 2200
-      };
-    `;
-    document.body.appendChild(inlineScript);
-
-    // 4. حقن ملف الـ SDK الخاص بالإشعارات
-    const sdkScript = document.createElement('script');
-    sdkScript.async = true;
-    sdkScript.src = 'https://api.wp-stock.com/blogger-sdk.js?v=1';
-    sdkScript.id = 'wp-push-sdk-script';
-    document.body.appendChild(sdkScript);
-
-    // تنظيف الذاكرة والسكريبتات عند خروج المستخدم من الصفحة لحماية أداء الموقع الرئيسي
+    // تنظيف الذاكرة عند خروج المستخدم من الصفحة
     return () => {
       clearInterval(timer);
-      const s1 = document.getElementById('wp-push-inline-setup');
-      const s2 = document.getElementById('wp-push-sdk-script');
-      if (s1) s1.remove();
-      if (s2) s2.remove();
     };
   }, [navigate]);
 
