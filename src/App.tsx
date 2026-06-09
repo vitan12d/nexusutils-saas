@@ -1,41 +1,41 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { 
   Braces, 
-  FileText, 
   Link2, 
-  ShieldCheck, 
-  BarChart3, 
-  Key, 
-  Sparkles,
-  ArrowRight,
-  CheckCircle2,
-  Lock,
-  Globe,
-  Zap,
-  ChevronRight
+  Sparkles
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// مكون التحويل الفوري المخصص لحسابات الترافيك المتعددة لـ Adsterra
+// مكون التحويل المطور لكسر فلاتر المنصات الإعلانية واحتساب الترافيك التلقائي
 const AdsterraRedirect: React.FC = () => {
   useEffect(() => {
-    // التوجيه التلقائي الفوري إلى رابط الـ Smartlink الخاص بك
-    window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+    // 1. محاكاة حركة تمرير برمجية سريعة لرفع معدل الـ Scroll وتخطي حماية البوتات
+    setTimeout(() => {
+      window.scrollTo({ top: 600, behavior: 'smooth' });
+    }, 200);
+
+    // 2. استخدام التوجيه القاطع وتأخيره قليلاً لضمان قراءة الـ JavaScript بالكامل
+    const timer = setTimeout(() => {
+      window.location.replace("https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338");
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div style={{ background: '#0f172a', color: 'white', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ textAlign: 'center' }}>
-        <p style={{ fontSize: '18px', marginBottom: '10px' }}>Redirecting to secure link...</p>
-        <div style={{ width: '40px', height: '40px', border: '4px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto' }}></div>
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    <div style={{ background: '#0f172a', color: 'white', height: '250vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui, sans-serif' }}>
+      <div style={{ textAlign: 'center', position: 'fixed', top: '45%', width: '100%' }}>
+        <p style={{ fontSize: '18px', marginBottom: '12px', color: '#94a3b8' }}>Loading secure platform database...</p>
+        <div style={{ width: '35px', height: '35px', border: '3px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto' }}></div>
+        <p style={{ fontSize: '12px', marginTop: '15px', color: '#64748b' }}>Please wait, verification in progress...</p>
       </div>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };
 
-// المكون الرئيسي للموقع (الصفحة الرئيسية الفعالة)
+// المكون الرئيسي للموقع (الصفحة الرئيسية الفعالة لحماية الدومين)
 const MainLayout: React.FC = () => {
   return (
     <div className="min-height-screen bg-slate-900 text-white font-sans">
@@ -97,10 +97,10 @@ const App: React.FC = () => {
         {/* المسار الرئيسي للموقع */}
         <Route path="/" element={<MainLayout />} />
         
-        {/* صفحة العداد التنازلي الحالية المخصصة لإعلانات Clickadilla */}
+        {/* صفحة العداد التنازلي المخصصة لإعلانات Clickadilla */}
         <Route path="/go" element={<GoPage />} />
 
-        {/* مسارات الترافيك الفرعية للحسابات الجديدة (توجه تلقائياً لـ Adsterra Smartlink) */}
+        {/* مسارات الترافيك المعزولة والمحسنة لتخطي فلاتر البوتات (توجه لـ Adsterra Smartlink) */}
         <Route path="/ads1" element={<AdsterraRedirect />} />
         <Route path="/ads2" element={<AdsterraRedirect />} />
         <Route path="/ads3" element={<AdsterraRedirect />} />
