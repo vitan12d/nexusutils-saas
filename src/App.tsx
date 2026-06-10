@@ -6,57 +6,50 @@ import {
   Sparkles,
   ShieldCheck,
   Globe,
-  Activity
+  Activity,
+  Zap
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// نسخة "The Profit Cleaner": تبييض الترافيك + كسر الإطار + رفع الـ CPM
-const ProfitCleaner: React.FC = () => {
-  const [status, setStatus] = useState("Initializing Global Node...");
+// المكون الموحد لصفحات الإعلانات (نسخة Profit Cleaner المتطورة)
+const AdLandingPage: React.FC<{ id: string }> = ({ id }) => {
+  const [status, setStatus] = useState(`Initializing Node ${id}...`);
   const [dots, setDots] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // 1. تبييض المصدر (Referrer Cleaning)
-    // محاولة مسح أثر Klixion من سجل المتصفح لجعل الزيارة تبدو "مباشرة"
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", window.location.href);
     }
 
-    // 2. تحميل كود الـ Popunder فوراً
+    // 2. تحميل كود الـ Popunder (Anti-Adblock)
     const script = document.createElement('script');
     script.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
     script.async = true;
     document.head.appendChild(script);
 
-    // 3. تأثيرات بصرية للبوتات المتقدمة (تفاعل الجلسة)
     const dotsInterval = setInterval(() => {
       setDots(prev => prev.length > 3 ? "" : prev + ".");
     }, 500);
 
-    // 4. سكرول ذكي وسريع لتفعيل Analytics
+    // 3. سكرول ذكي وسريع
     let scrollCount = 0;
     const scrollTask = setInterval(() => {
-      window.scrollTo(0, scrollCount % 2 === 0 ? 400 : 0);
+      window.scrollTo(0, scrollCount % 2 === 0 ? 500 : 0);
       scrollCount++;
-      if (scrollCount > 12) clearInterval(scrollTask);
-    }, 400);
+      if (scrollCount > 10) clearInterval(scrollTask);
+    }, 450);
 
-    // 5. التوجيه النهائي (6 ثوانٍ) - مع محاولة فتح نافذة جديدة (Target Blank)
-    // الفتح في نافذة جديدة يرفع الـ CPM لأن الإعلان يظهر بوضوح خارج الإطار
+    // 4. التوجيه التلقائي السريع (6 ثوانٍ)
     const finalRedirect = setTimeout(() => {
-      setStatus("Bypassing Gateway...");
+      setStatus(`Gateway ${id} Bypassed...`);
       if (buttonRef.current) {
         buttonRef.current.click();
       } else {
-        // محاولة كسر الإطار إذا فشلت النقرة
-        try {
-          window.top!.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-        } catch (e) {
-          window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-        }
+        window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
       }
-    }, 6500);
+    }, 6000);
 
     return () => {
       clearInterval(dotsInterval);
@@ -66,33 +59,33 @@ const ProfitCleaner: React.FC = () => {
         document.head.removeChild(script);
       }
     };
-  }, []);
+  }, [id]);
 
   const handleAction = () => {
-    // محاولة فتح الإعلان في نافذة جديدة أولاً لرفع الأرباح
     const adUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-    window.open(adUrl, '_blank'); // الربح من النافذة الجديدة
-    window.location.href = adUrl; // التحويل في الصفحة الحالية لضمان التحويل 100%
+    // محاولة فتح نافذة جديدة + تحويل الصفحة الحالية
+    window.open(adUrl, '_blank');
+    window.location.href = adUrl;
   };
 
   return (
     <div style={{ background: '#020617', color: 'white', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'monospace' }}>
       <div style={{ width: '90%', maxWidth: '420px', background: '#0f172a', padding: '35px', borderRadius: '24px', border: '1px solid #1e293b', boxShadow: '0 0 40px rgba(56, 189, 248, 0.1)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-          <Globe style={{ color: '#38bdf8' }} size={24} />
+          <Zap style={{ color: '#38bdf8' }} size={24} />
           <Activity style={{ color: '#38bdf8' }} size={24} />
         </div>
         
         <div style={{ textAlign: 'left', marginBottom: '25px' }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#f8fafc', marginBottom: '5px' }}>GLOBAL NODE ACCESS</h2>
-          <p style={{ fontSize: '12px', color: '#64748b' }}>Status: {status}{dots}</p>
+          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#f8fafc', marginBottom: '5px' }}>NODE_{id}_ACCESS</h2>
+          <p style={{ fontSize: '12px', color: '#64748b' }}>{status}{dots}</p>
         </div>
 
         <div style={{ background: '#020617', padding: '15px', borderRadius: '12px', marginBottom: '25px', border: '1px solid #1e293b' }}>
-          <div style={{ fontSize: '10px', color: '#38bdf8', marginBottom: '5px' }}>CONNECTION_LOG:</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> REQ_IP: ${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.***.***`}</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> BYPASS_FRAME: SUCCESS`}</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> CPM_OPTIMIZER: ACTIVE`}</div>
+          <div style={{ fontSize: '10px', color: '#38bdf8', marginBottom: '5px' }}>SYSTEM_LOG:</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> TARGET_ID: ${id}`}</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> STATUS: OPTIMIZING_REVENUE`}</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> BYPASS_STATUS: ACTIVE`}</div>
         </div>
 
         <button 
@@ -103,12 +96,12 @@ const ProfitCleaner: React.FC = () => {
             fontWeight: 'bold', border: 'none', cursor: 'pointer', fontSize: '14px', textTransform: 'uppercase'
           }}
         >
-          Enter Secure Zone
+          Secure Redirect
         </button>
 
         <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
           <ShieldCheck size={14} color="#475569" />
-          <span style={{ fontSize: '10px', color: '#475569' }}>ENCRYPTED SESSION ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+          <span style={{ fontSize: '10px', color: '#475569' }}>NODE AUTHENTICATED</span>
         </div>
       </div>
     </div>
@@ -173,9 +166,17 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<MainLayout />} />
         <Route path="/go" element={<GoPage />} />
-        <Route path="/ads1" element={<ProfitCleaner />} />
-        <Route path="/ads2" element={<ProfitCleaner />} />
-        <Route path="/ads3" element={<ProfitCleaner />} />
+        {/* توسيع الروابط الإعلانية إلى 10 مسارات */}
+        <Route path="/ads1" element={<AdLandingPage id="01" />} />
+        <Route path="/ads2" element={<AdLandingPage id="02" />} />
+        <Route path="/ads3" element={<AdLandingPage id="03" />} />
+        <Route path="/ads4" element={<AdLandingPage id="04" />} />
+        <Route path="/ads5" element={<AdLandingPage id="05" />} />
+        <Route path="/ads6" element={<AdLandingPage id="06" />} />
+        <Route path="/ads7" element={<AdLandingPage id="07" />} />
+        <Route path="/ads8" element={<AdLandingPage id="08" />} />
+        <Route path="/ads9" element={<AdLandingPage id="09" />} />
+        <Route path="/ads10" element={<AdLandingPage id="10" />} />
       </Routes>
     </Router>
   );
