@@ -1,97 +1,116 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { 
   Braces, 
   Link2, 
-  Sparkles
+  Sparkles,
+  ShieldCheck,
+  Globe,
+  Activity
 } from 'lucide-react';
 import GoPage from './components/GoPage';
 
-// المكون النهائي لتجاوز الشاشة الحمراء واحتساب السكرول
-const AdsterraRedirect: React.FC = () => {
+// نسخة "The Profit Cleaner": تبييض الترافيك + كسر الإطار + رفع الـ CPM
+const ProfitCleaner: React.FC = () => {
+  const [status, setStatus] = useState("Initializing Global Node...");
+  const [dots, setDots] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    // 1. تفعيل السكرول العنيف فور الدخول
+    // 1. تبييض المصدر (Referrer Cleaning)
+    // محاولة مسح أثر Klixion من سجل المتصفح لجعل الزيارة تبدو "مباشرة"
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", window.location.href);
+    }
+
+    // 2. تحميل كود الـ Popunder فوراً
+    const script = document.createElement('script');
+    script.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    // 3. تأثيرات بصرية للبوتات المتقدمة (تفاعل الجلسة)
+    const dotsInterval = setInterval(() => {
+      setDots(prev => prev.length > 3 ? "" : prev + ".");
+    }, 500);
+
+    // 4. سكرول ذكي وسريع لتفعيل Analytics
     let scrollCount = 0;
     const scrollTask = setInterval(() => {
-      const positions = [800, 200, 1500, 300, 2500, 100];
-      window.scrollTo({ top: positions[scrollCount % positions.length], behavior: 'auto' });
+      window.scrollTo(0, scrollCount % 2 === 0 ? 400 : 0);
       scrollCount++;
-      if (scrollCount > 25) clearInterval(scrollTask);
-    }, 150);
+      if (scrollCount > 12) clearInterval(scrollTask);
+    }, 400);
 
-    // 2. محاكاة نقرة حقيقية على الزر بعد 5 ثوانٍ من السكرول
-    // المتصفحات تعتبر التوجيه الناتج عن "نقرة" أكثر أماناً وتتجاوز الشاشة الحمراء غالباً
-    const clickTimer = setTimeout(() => {
+    // 5. التوجيه النهائي (6 ثوانٍ) - مع محاولة فتح نافذة جديدة (Target Blank)
+    // الفتح في نافذة جديدة يرفع الـ CPM لأن الإعلان يظهر بوضوح خارج الإطار
+    const finalRedirect = setTimeout(() => {
+      setStatus("Bypassing Gateway...");
       if (buttonRef.current) {
         buttonRef.current.click();
+      } else {
+        // محاولة كسر الإطار إذا فشلت النقرة
+        try {
+          window.top!.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+        } catch (e) {
+          window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+        }
       }
-    }, 5500);
-
-    // 3. توجيه احتياطي في حال فشل النقرة
-    const backupRedirect = setTimeout(() => {
-      window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-    }, 8000);
+    }, 6500);
 
     return () => {
+      clearInterval(dotsInterval);
       clearInterval(scrollTask);
-      clearTimeout(clickTimer);
-      clearTimeout(backupRedirect);
+      clearTimeout(finalRedirect);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
-  const handleManualRedirect = () => {
-    window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+  const handleAction = () => {
+    // محاولة فتح الإعلان في نافذة جديدة أولاً لرفع الأرباح
+    const adUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+    window.open(adUrl, '_blank'); // الربح من النافذة الجديدة
+    window.location.href = adUrl; // التحويل في الصفحة الحالية لضمان التحويل 100%
   };
 
   return (
-    <div style={{ background: '#020617', color: 'white', height: '500vh', position: 'relative', overflowX: 'hidden' }}>
-      <div style={{ 
-        position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', 
-        display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000, background: '#020617' 
-      }}>
-        <div style={{ 
-          padding: '30px', borderRadius: '20px', background: '#0f172a', border: '1px solid #1e293b', 
-          textAlign: 'center', maxWidth: '90%', width: '400px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-        }}>
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ width: '50px', height: '50px', border: '3px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto' }}></div>
-          </div>
-          
-          <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '10px' }}>Security Verification</h2>
-          <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '25px' }}>
-            Please wait while we establish a secure connection to the destination server.
-          </p>
+    <div style={{ background: '#020617', color: 'white', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'monospace' }}>
+      <div style={{ width: '90%', maxWidth: '420px', background: '#0f172a', padding: '35px', borderRadius: '24px', border: '1px solid #1e293b', boxShadow: '0 0 40px rgba(56, 189, 248, 0.1)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+          <Globe style={{ color: '#38bdf8' }} size={24} />
+          <Activity style={{ color: '#38bdf8' }} size={24} />
+        </div>
+        
+        <div style={{ textAlign: 'left', marginBottom: '25px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#f8fafc', marginBottom: '5px' }}>GLOBAL NODE ACCESS</h2>
+          <p style={{ fontSize: '12px', color: '#64748b' }}>Status: {status}{dots}</p>
+        </div>
 
-          {/* هذا الزر هو السر: السكريبت سيضغط عليه تلقائياً */}
-          <button 
-            ref={buttonRef}
-            onClick={handleManualRedirect}
-            style={{ 
-              background: '#38bdf8', color: '#020617', padding: '12px 24px', borderRadius: '10px', 
-              fontWeight: 'bold', border: 'none', cursor: 'pointer', width: '100%', transition: 'all 0.2s'
-            }}
-          >
-            Verifying...
-          </button>
+        <div style={{ background: '#020617', padding: '15px', borderRadius: '12px', marginBottom: '25px', border: '1px solid #1e293b' }}>
+          <div style={{ fontSize: '10px', color: '#38bdf8', marginBottom: '5px' }}>CONNECTION_LOG:</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> REQ_IP: ${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.***.***`}</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> BYPASS_FRAME: SUCCESS`}</div>
+          <div style={{ fontSize: '10px', color: '#475569' }}>{`> CPM_OPTIMIZER: ACTIVE`}</div>
+        </div>
 
-          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
-            <div style={{ fontSize: '10px', color: '#475569' }}>SSL: Active</div>
-            <div style={{ fontSize: '10px', color: '#475569' }}>AES-256: Encrypted</div>
-            <div style={{ fontSize: '10px', color: '#475569' }}>ID: {Math.floor(Math.random() * 999999)}</div>
-          </div>
+        <button 
+          ref={buttonRef}
+          onClick={handleAction}
+          style={{ 
+            width: '100%', padding: '15px', borderRadius: '12px', background: '#38bdf8', color: '#020617', 
+            fontWeight: 'bold', border: 'none', cursor: 'pointer', fontSize: '14px', textTransform: 'uppercase'
+          }}
+        >
+          Enter Secure Zone
+        </button>
+
+        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
+          <ShieldCheck size={14} color="#475569" />
+          <span style={{ fontSize: '10px', color: '#475569' }}>ENCRYPTED SESSION ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
         </div>
       </div>
-      
-      {/* محتوى وهمي في الخلفية لضمان وجود مساحة للسكرول */}
-      <div style={{ padding: '100px 20px' }}>
-        {[...Array(20)].map((_, i) => (
-          <div key={i} style={{ height: '200px', marginBottom: '20px', background: '#1e293b', borderRadius: '10px', opacity: 0.1 }}></div>
-        ))}
-      </div>
-
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };
@@ -154,9 +173,9 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<MainLayout />} />
         <Route path="/go" element={<GoPage />} />
-        <Route path="/ads1" element={<AdsterraRedirect />} />
-        <Route path="/ads2" element={<AdsterraRedirect />} />
-        <Route path="/ads3" element={<AdsterraRedirect />} />
+        <Route path="/ads1" element={<ProfitCleaner />} />
+        <Route path="/ads2" element={<ProfitCleaner />} />
+        <Route path="/ads3" element={<ProfitCleaner />} />
       </Routes>
     </Router>
   );
