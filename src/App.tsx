@@ -8,71 +8,99 @@ import {
   Globe,
   Activity
 } from 'lucide-react';
-import GoPage from './components/GoPage';
 
-// نسخة "The Profit Cleaner": تبييض الترافيك + كسر الإطار + رفع الـ CPM
+// مكون صفحة الـ Bridge Test الاختباري (GoPage) مدمج داخلياً لضمان عدم حدوث أخطاء استيراد
+const GoPage: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-200 flex flex-col items-center justify-center font-monospace p-6">
+      <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-md w-full shadow-2xl">
+        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <Activity className="text-cyan-500 h-5 w-5 animate-pulse" /> Bridge Gateway Test
+        </h2>
+        <p className="text-sm text-slate-400 mb-6">Testing route allocation and background performance metrics for active publisher segments.</p>
+        <Link to="/" className="inline-block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl transition border border-slate-700">
+          Return to Dashboard
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+// نسخة "The Profit Cleaner" المحدثة: تبييض الترافيك + كسر الإطار + رفع الـ CPM + تنظيف ذاتي عند المغادرة
 const ProfitCleaner: React.FC = () => {
   const [status, setStatus] = useState("Initializing Global Node...");
   const [dots, setDots] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const scriptId = "adsterra-popunder-script";
 
   useEffect(() => {
     // 1. تبييض المصدر (Referrer Cleaning)
-    // محاولة مسح أثر Klixion من سجل المتصفح لجعل الزيارة تبدو "مباشرة"
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", window.location.href);
     }
 
-    // 2. تحميل كود الـ Popunder فوراً
-    const script = document.createElement('script');
-    script.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
-    script.async = true;
-    document.head.appendChild(script);
+    // 2. تحميل كود الـ Popunder فوراً مع إضافة معرف فريد (ID) للتحكم به لاحقاً
+    let script = document.getElementById(scriptId) as HTMLScriptElement;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
+      script.async = true;
+      document.head.appendChild(script);
+    }
 
-    // 3. تأثيرات بصرية للبوتات المتقدمة (تفاعل الجلسة)
+    // 3. تأثيرات بصرية للبوتات والمراجعة التلقائية
     const dotsInterval = setInterval(() => {
       setDots(prev => prev.length > 3 ? "" : prev + ".");
-    }, 500);
+    }, 450);
 
-    // 4. سكرول ذكي وسريع لتفعيل Analytics
+    // 4. سكرول فائق السرعة لتنشيط فلاتر Google Analytics 4 والـ Engagement
     let scrollCount = 0;
     const scrollTask = setInterval(() => {
-      window.scrollTo(0, scrollCount % 2 === 0 ? 400 : 0);
+      window.scrollTo({
+        top: scrollCount % 2 === 0 ? 500 : 0,
+        behavior: 'smooth'
+      });
       scrollCount++;
-      if (scrollCount > 12) clearInterval(scrollTask);
-    }, 400);
+      if (scrollCount > 16) clearInterval(scrollTask);
+    }, 350);
 
-    // 5. التوجيه النهائي (6 ثوانٍ) - مع محاولة فتح نافذة جديدة (Target Blank)
-    // الفتح في نافذة جديدة يرفع الـ CPM لأن الإعلان يظهر بوضوح خارج الإطار
+    // 5. التوجيه النهائي التلقائي (محسن ومسرع إلى 5.5 ثانية لضمان اصطياد زوار الـ Autosurf السريعين)
     const finalRedirect = setTimeout(() => {
       setStatus("Bypassing Gateway...");
       if (buttonRef.current) {
         buttonRef.current.click();
       } else {
-        // محاولة كسر الإطار إذا فشلت النقرة
+        const targetUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
         try {
-          window.top!.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+          window.top!.location.href = targetUrl;
         } catch (e) {
-          window.location.href = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
+          window.location.href = targetUrl;
         }
       }
-    }, 6500);
+    }, 5500);
 
+    // 6. التنظيف الذاتي الحاسم (Self-Cleaning Mechanism)
+    // عند خروج المتصفح من هذا المسار، يتم تدمير السكريبت وتنظيف الـ DOM تماماً لحماية الصفحة الرئيسية
     return () => {
       clearInterval(dotsInterval);
       clearInterval(scrollTask);
       clearTimeout(finalRedirect);
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
+      const activeScript = document.getElementById(scriptId);
+      if (activeScript && document.head.contains(activeScript)) {
+        document.head.removeChild(activeScript);
       }
+      // إزالة أي أثر أو مخلفات إعلانية قد تحاول البقاء في الـ body
+      document.querySelectorAll('iframe[id*="asf"], div[class*="adsterra"]').forEach(el => el.remove());
     };
   }, []);
 
   const handleAction = () => {
-    // محاولة فتح الإعلان في نافذة جديدة أولاً لرفع الأرباح
     const adUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-    window.open(adUrl, '_blank'); // الربح من النافذة الجديدة
-    window.location.href = adUrl; // التحويل في الصفحة الحالية لضمان التحويل 100%
+    // فتح الإعلان في نافذة جديدة لرفع عائد الـ CPM الإعلاني
+    window.open(adUrl, '_blank'); 
+    // تحويل الصفحة الحالية لضمان تسجيل الـ Conversion بنسبة 100%
+    window.location.href = adUrl; 
   };
 
   return (
@@ -115,10 +143,10 @@ const ProfitCleaner: React.FC = () => {
   );
 };
 
-// المكون الرئيسي للموقع
+// واجهة الموقع الرسمية المستقرة (Main Dashboard)
 const MainLayout: React.FC = () => {
   return (
-    <div className="min-height-screen bg-slate-900 text-white font-sans">
+    <div className="min-h-screen bg-slate-900 text-white font-sans">
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -146,17 +174,17 @@ const MainLayout: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-blue-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-blue-500/50 transition cursor-pointer">
             <Braces className="h-8 w-8 text-blue-500 mb-4" />
             <h3 className="text-lg font-semibold mb-2">JSON Formatter & Parser</h3>
             <p className="text-slate-400 text-sm">Rectify nested payloads, trailing commas, and unescaped characters locally.</p>
           </div>
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition cursor-pointer">
             <Sparkles className="h-8 w-8 text-indigo-500 mb-4" />
             <h3 className="text-lg font-semibold mb-2">AI Meta Tag Generator</h3>
             <p className="text-slate-400 text-sm">Inspect page keywords and construct structured JSON-LD schemas easily.</p>
           </div>
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-cyan-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-cyan-500/50 transition cursor-pointer">
             <Link2 className="h-8 w-8 text-cyan-500 mb-4" />
             <h3 className="text-lg font-semibold mb-2">UTM Campaign Link Builder</h3>
             <p className="text-slate-400 text-sm">Compile trackable target parameters for premium publisher campaigns.</p>
@@ -167,12 +195,18 @@ const MainLayout: React.FC = () => {
   );
 };
 
+// نظام إدارة المسارات المركزي المعزول
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+        {/* الصفحة الرئيسية الحقيقية: معزولة ونظيفة تماماً وتعمل بكفاءة تملّك برمجية كاملة */}
         <Route path="/" element={<MainLayout />} />
+        
+        {/* صفحة فحص الـ Bridge */}
         <Route path="/go" element={<GoPage />} />
+        
+        {/* الروابط المخصصة لفلترة وحصاد أرباح منصات التبادل فقط */}
         <Route path="/ads1" element={<ProfitCleaner />} />
         <Route path="/ads2" element={<ProfitCleaner />} />
         <Route path="/ads3" element={<ProfitCleaner />} />
