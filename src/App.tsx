@@ -6,210 +6,238 @@ import {
   Sparkles,
   ShieldCheck,
   Globe,
-  Activity
+  Activity,
+  Zap,
+  CheckCircle,
+  ArrowRight,
+  Lock
 } from 'lucide-react';
+import GoPage from './components/GoPage';
 
-// مكون صفحة الـ Bridge Test الاختباري (GoPage) مدمج داخلياً لضمان عدم حدوث أخطاء استيراد
-const GoPage: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 flex flex-col items-center justify-center font-monospace p-6">
-      <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-md w-full shadow-2xl">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <Activity className="text-cyan-500 h-5 w-5 animate-pulse" /> Bridge Gateway Test
-        </h2>
-        <p className="text-sm text-slate-400 mb-6">Testing route allocation and background performance metrics for active publisher segments.</p>
-        <Link to="/" className="inline-block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl transition border border-slate-700">
-          Return to Dashboard
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-// نسخة "The Profit Cleaner" المحدثة: تبييض الترافيك + كسر الإطار + رفع الـ CPM + تنظيف ذاتي عند المغادرة
-const ProfitCleaner: React.FC = () => {
-  const [status, setStatus] = useState("Initializing Global Node...");
-  const [dots, setDots] = useState("");
+// مكون صفحة هبوط إعلانية احترافية (Professional Ad Landing Page)
+const AdLandingPage: React.FC<{ id: string, title: string, description: string }> = ({ id, title, description }) => {
+  const [progress, setProgress] = useState(0);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const scriptId = "adsterra-popunder-script";
 
   useEffect(() => {
-    // 1. تبييض المصدر (Referrer Cleaning)
+    // 1. تبييض المصدر (Referrer Masking)
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", window.location.href);
     }
 
-    // 2. تحميل كود الـ Popunder فوراً مع إضافة معرف فريد (ID) للتحكم به لاحقاً
-    let script = document.getElementById(scriptId) as HTMLScriptElement;
-    if (!script) {
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
-      script.async = true;
-      document.head.appendChild(script);
-    }
-
-    // 3. تأثيرات بصرية للبوتات والمراجعة التلقائية
-    const dotsInterval = setInterval(() => {
-      setDots(prev => prev.length > 3 ? "" : prev + ".");
-    }, 450);
-
-    // 4. سكرول فائق السرعة لتنشيط فلاتر Google Analytics 4 والـ Engagement
+    // 2. سكرول ذكي مدمج بشكل طبيعي (يخدم البوت والزائر الحقيقي)
     let scrollCount = 0;
     const scrollTask = setInterval(() => {
       window.scrollTo({
-        top: scrollCount % 2 === 0 ? 500 : 0,
+        top: scrollCount % 2 === 0 ? 450 : 0,
         behavior: 'smooth'
       });
       scrollCount++;
-      if (scrollCount > 16) clearInterval(scrollTask);
-    }, 350);
+      if (scrollCount > 8) clearInterval(scrollTask);
+    }, 1200);
 
-    // 5. التوجيه النهائي التلقائي (محسن ومسرع إلى 5.5 ثانية لضمان اصطياد زوار الـ Autosurf السريعين)
-    const finalRedirect = setTimeout(() => {
-      setStatus("Bypassing Gateway...");
-      if (buttonRef.current) {
-        buttonRef.current.click();
-      } else {
-        const targetUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-        try {
-          window.top!.location.href = targetUrl;
-        } catch (e) {
-          window.location.href = targetUrl;
+    // 3. شريط تقدم يوحي بالأمان والاحترافية
+    const timer = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          return 100;
         }
-      }
-    }, 5500);
+        return prev + 2;
+      });
+    }, 100);
 
-    // 6. التنظيف الذاتي الحاسم (Self-Cleaning Mechanism)
-    // عند خروج المتصفح من هذا المسار، يتم تدمير السكريبت وتنظيف الـ DOM تماماً لحماية الصفحة الرئيسية
+    // 4. التوجيه التلقائي بعد 6 ثوانٍ (للبوتات) أو انتظار نقرة الزائر
+    const autoRedirect = setTimeout(() => {
+      if (buttonRef.current) buttonRef.current.click();
+    }, 6500);
+
     return () => {
-      clearInterval(dotsInterval);
       clearInterval(scrollTask);
-      clearTimeout(finalRedirect);
-      const activeScript = document.getElementById(scriptId);
-      if (activeScript && document.head.contains(activeScript)) {
-        document.head.removeChild(activeScript);
-      }
-      // إزالة أي أثر أو مخلفات إعلانية قد تحاول البقاء في الـ body
-      document.querySelectorAll('iframe[id*="asf"], div[class*="adsterra"]').forEach(el => el.remove());
+      clearInterval(timer);
+      clearTimeout(autoRedirect);
     };
-  }, []);
+  }, [id]);
 
   const handleAction = () => {
     const adUrl = "https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338";
-    // فتح الإعلان في نافذة جديدة لرفع عائد الـ CPM الإعلاني
-    window.open(adUrl, '_blank'); 
-    // تحويل الصفحة الحالية لضمان تسجيل الـ Conversion بنسبة 100%
-    window.location.href = adUrl; 
+    window.open(adUrl, '_blank');
+    window.location.href = adUrl;
   };
 
   return (
-    <div style={{ background: '#020617', color: 'white', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'monospace' }}>
-      <div style={{ width: '90%', maxWidth: '420px', background: '#0f172a', padding: '35px', borderRadius: '24px', border: '1px solid #1e293b', boxShadow: '0 0 40px rgba(56, 189, 248, 0.1)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-          <Globe style={{ color: '#38bdf8' }} size={24} />
-          <Activity style={{ color: '#38bdf8' }} size={24} />
-        </div>
+    <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-6 font-sans">
+      <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+        {/* تأثير خلفية متحرك */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 blur-3xl rounded-full"></div>
         
-        <div style={{ textAlign: 'left', marginBottom: '25px' }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#f8fafc', marginBottom: '5px' }}>GLOBAL NODE ACCESS</h2>
-          <p style={{ fontSize: '12px', color: '#64748b' }}>Status: {status}{dots}</p>
+        <div className="flex items-center justify-center mb-6">
+          <div className="bg-blue-600/20 p-4 rounded-2xl">
+            <ShieldCheck className="w-10 h-10 text-blue-500" />
+          </div>
         </div>
 
-        <div style={{ background: '#020617', padding: '15px', borderRadius: '12px', marginBottom: '25px', border: '1px solid #1e293b' }}>
-          <div style={{ fontSize: '10px', color: '#38bdf8', marginBottom: '5px' }}>CONNECTION_LOG:</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> REQ_IP: ${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.***.***`}</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> BYPASS_FRAME: SUCCESS`}</div>
-          <div style={{ fontSize: '10px', color: '#475569' }}>{`> CPM_OPTIMIZER: ACTIVE`}</div>
+        <h2 className="text-2xl font-bold text-center mb-2 text-slate-100">{title}</h2>
+        <p className="text-slate-400 text-center text-sm mb-8 leading-relaxed">
+          {description}
+        </p>
+
+        <div className="space-y-4 mb-8">
+          <div className="flex items-center space-x-3 text-sm text-slate-300">
+            <CheckCircle className="w-4 h-4 text-emerald-500" />
+            <span>Encrypted SSL Tunnel Active</span>
+          </div>
+          <div className="flex items-center space-x-3 text-sm text-slate-300">
+            <CheckCircle className="w-4 h-4 text-emerald-500" />
+            <span>Zero-Knowledge Data Processing</span>
+          </div>
+          <div className="flex items-center space-x-3 text-sm text-slate-300">
+            <CheckCircle className="w-4 h-4 text-emerald-500" />
+            <span>Node Authentication Verified</span>
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <div className="flex justify-between mb-2">
+            <span className="text-xs text-slate-500 font-medium">Verifying Gateway...</span>
+            <span className="text-xs text-blue-400 font-bold">{progress}%</span>
+          </div>
+          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
         </div>
 
         <button 
           ref={buttonRef}
           onClick={handleAction}
-          style={{ 
-            width: '100%', padding: '15px', borderRadius: '12px', background: '#38bdf8', color: '#020617', 
-            fontWeight: 'bold', border: 'none', cursor: 'pointer', fontSize: '14px', textTransform: 'uppercase'
-          }}
+          className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all transform active:scale-95 flex items-center justify-center space-x-2 shadow-lg shadow-blue-600/20"
         >
-          Enter Secure Zone
+          <span>Continue to Destination</span>
+          <ArrowRight className="w-5 h-5" />
         </button>
 
-        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
-          <ShieldCheck size={14} color="#475569" />
-          <span style={{ fontSize: '10px', color: '#475569' }}>ENCRYPTED SESSION ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+        <div className="mt-6 flex justify-center items-center space-x-2 text-[10px] text-slate-600 uppercase tracking-widest">
+          <Lock size={12} />
+          <span>Secured by NexusUtils Shield</span>
         </div>
+      </div>
+      
+      {/* محتوى وهمي إضافي أسفل البطاقة لضمان وجود مساحة للسكرول الحقيقي */}
+      <div className="mt-12 opacity-0 h-[800px]">
+        Scroll Content for Bots
       </div>
     </div>
   );
 };
 
-// واجهة الموقع الرسمية المستقرة (Main Dashboard)
+// المكون الرئيسي للموقع (استعادة الأدوات الأصلية)
 const MainLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-white font-sans">
-      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur">
+      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
+            <div className="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-600/20">
               <Braces className="h-6 w-6 text-white" />
             </div>
             <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
               NexusUtils
             </span>
           </div>
-          <nav className="flex space-x-4">
+          <nav className="hidden md:flex space-x-8">
+            <a href="#" className="text-sm font-medium text-slate-400 hover:text-white transition">Tools</a>
+            <a href="#" className="text-sm font-medium text-slate-400 hover:text-white transition">Documentation</a>
             <Link to="/go" className="text-sm font-medium text-slate-400 hover:text-white transition">Bridge Test</Link>
           </nav>
+          <div className="flex items-center">
+            <button className="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl text-sm font-bold transition border border-slate-700">
+              Sign In
+            </button>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-block px-4 py-1.5 mb-6 bg-blue-600/10 border border-blue-500/20 rounded-full">
+            <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">v2.4.0 Global Release</span>
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
             Elite-Grade Developer Sandbox Software
           </h1>
-          <p className="text-lg text-slate-400">
+          <p className="text-xl text-slate-400 leading-relaxed">
             Zero Registrations. Client-First Isolation and Encryption. Securely process files and payloads entirely within local device memory.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-blue-500/50 transition cursor-pointer">
-            <Braces className="h-8 w-8 text-blue-500 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">JSON Formatter & Parser</h3>
-            <p className="text-slate-400 text-sm">Rectify nested payloads, trailing commas, and unescaped characters locally.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="group bg-slate-800/30 border border-slate-800 p-8 rounded-3xl hover:border-blue-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer">
+            <div className="bg-blue-600/20 w-12 h-12 flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <Braces className="h-6 w-6 text-blue-500" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">JSON Formatter & Parser</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">Rectify nested payloads, trailing commas, and unescaped characters locally in your browser's RAM.</p>
           </div>
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-indigo-500/50 transition cursor-pointer">
-            <Sparkles className="h-8 w-8 text-indigo-500 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">AI Meta Tag Generator</h3>
-            <p className="text-slate-400 text-sm">Inspect page keywords and construct structured JSON-LD schemas easily.</p>
+          
+          <div className="group bg-slate-800/30 border border-slate-800 p-8 rounded-3xl hover:border-indigo-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer">
+            <div className="bg-indigo-600/20 w-12 h-12 flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <Sparkles className="h-6 w-6 text-indigo-500" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">AI Meta Tag Generator</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">Inspect page keywords and construct structured JSON-LD schemas easily with AI-driven analysis.</p>
           </div>
-          <div className="bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl hover:border-cyan-500/50 transition cursor-pointer">
-            <Link2 className="h-8 w-8 text-cyan-500 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">UTM Campaign Link Builder</h3>
-            <p className="text-slate-400 text-sm">Compile trackable target parameters for premium publisher campaigns.</p>
+
+          <div className="group bg-slate-800/30 border border-slate-800 p-8 rounded-3xl hover:border-cyan-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer">
+            <div className="bg-cyan-600/20 w-12 h-12 flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <Link2 className="h-6 w-6 text-cyan-500" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">UTM Campaign Builder</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">Compile trackable target parameters for premium publisher campaigns and marketing analytics.</p>
           </div>
         </div>
       </main>
+
+      <footer className="border-t border-slate-800 py-12 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-slate-500 text-sm">© 2026 NexusUtils Suite. All operations are local and secure.</p>
+        </div>
+      </footer>
     </div>
   );
 };
 
-// نظام إدارة المسارات المركزي المعزول
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* الصفحة الرئيسية الحقيقية: معزولة ونظيفة تماماً وتعمل بكفاءة تملّك برمجية كاملة */}
         <Route path="/" element={<MainLayout />} />
-        
-        {/* صفحة فحص الـ Bridge */}
         <Route path="/go" element={<GoPage />} />
         
-        {/* الروابط المخصصة لفلترة وحصاد أرباح منصات التبادل فقط */}
-        <Route path="/ads1" element={<ProfitCleaner />} />
-        <Route path="/ads2" element={<ProfitCleaner />} />
-        <Route path="/ads3" element={<ProfitCleaner />} />
+        {/* الصفحات الإعلانية المنظمة باحترافية */}
+        <Route path="/ads1" element={
+          <AdLandingPage 
+            id="01" 
+            title="Secure Cloud Tunnel" 
+            description="We are establishing a secure connection to the requested resource. Please wait while our encryption layer verifies your session." 
+          />
+        } />
+        <Route path="/ads2" element={
+          <AdLandingPage 
+            id="02" 
+            title="AI Content Audit" 
+            description="Our AI engine is currently auditing the metadata structure. You will be redirected once the verification process is complete." 
+          />
+        } />
+        <Route path="/ads3" element={
+          <AdLandingPage 
+            id="03" 
+            title="Developer Sandbox Sync" 
+            description="Synchronizing your local sandbox environment with the global node. This ensures absolute privacy and high-speed processing." 
+          />
+        } />
       </Routes>
     </Router>
   );
