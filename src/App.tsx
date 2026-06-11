@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  BrowserRouter, Routes, Route, Link, useParams, useLocation, useNavigate 
+  BrowserRouter, Routes, Route, Link, useParams, useNavigate 
 } from 'react-router-dom';
 import { 
   Terminal, Sparkles, TrendingUp, Search, Activity, BookOpen, 
-  Layers, ChevronRight, Check, HelpCircle, ChevronRightSquare, 
-  ArrowLeft, FileText, Smartphone, Laptop, Twitter
+  Layers, ChevronRight, HelpCircle, ChevronRightSquare, 
+  ArrowLeft, FileText, Smartphone, Laptop, Twitter, AlertCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -29,30 +29,23 @@ import PDFHub from './components/PDFHub';
 import HTMLSitemap from './components/HTMLSitemap';
 
 /* ==========================================================================
-   MAIN APPLICATION CORE (دمج محرك السكرول البشري التلقائي لحملات الـ 60 ثانية)
+   MAIN APPLICATION CORE (نسخة نظيفة بدون سكرول تلقائي وبحقن إعلاني آمن)
    ========================================================================== */
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
   useEffect(() => {
-    // تبييض وتنظيف المصدر تلقائياً لحجب معالم منصات التبادل
+    // تنظيف سجل المصدر وتبييضه طبيعياً لحماية أمان الحسابات
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", window.location.href);
     }
 
-    // محرك التمرير البشري التلقائي (Scroll Engine) للموقع بالكامل
-    let scrollCount = 0;
-    const scrollTask = setInterval(() => {
-      const randomOffset = scrollCount % 2 === 0 ? (250 + Math.random() * 200) : (50 + Math.random() * 50);
-      window.scrollTo({
-        top: randomOffset,
-        behavior: 'smooth'
-      });
-      scrollCount++;
-
-      if (scrollCount > 120) clearInterval(scrollTask);
-    }, 900);
+    // [إصلاح الإعلانات] حقن سكريبت البوب اندر (Adsterra) برمجياً لضمان تنفيذه فوراً عند تصفح الموقع
+    const adsterraScript = document.createElement('script');
+    adsterraScript.src = "https://pl29684705.effectivecpmnetwork.com/d1/23/53/d123535d26ad8b7ef4da67e0a3bc536f.js";
+    adsterraScript.async = true;
+    document.head.appendChild(adsterraScript);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -63,7 +56,6 @@ export default function App() {
     window.addEventListener('keydown', handleKeyDown);
     
     return () => {
-      clearInterval(scrollTask);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
@@ -72,9 +64,9 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 flex flex-col font-sans selection:bg-blue-500 selection:text-white transition-colors duration-200">
         
-        {/* بنر إعلاني علوي ثابت من شبكة Clickadilla يظهر بانسيابية كأي موقع طبيعي */}
-        <div className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-850 py-2 flex justify-center items-center">
-          <div data-banner-id="1493623"></div>
+        {/* بنر علوي من Clickadilla - تم إصلاحه ليتم قراءته من قبل خوادم الإعلانات */}
+        <div className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-850 py-2 flex justify-center items-center min-h-[60px]">
+          <div dangerouslySetInnerHTML={{ __html: '<div data-banner-id="1493623"></div>' }} />
         </div>
 
         <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
@@ -105,7 +97,7 @@ export default function App() {
 }
 
 /* ==========================================================================
-   PAGE: DASHBOARD (منطقة عرض الشبكة للأدوات البرمجية والمقالات المحدثة)
+   PAGE: DASHBOARD
    ========================================================================== */
 function DashboardPage({ searchQuery, setSearchQuery }: { searchQuery: string; setSearchQuery: (q: string) => void }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -132,7 +124,7 @@ function DashboardPage({ searchQuery, setSearchQuery }: { searchQuery: string; s
             Elite-Grade Developer Sandbox Software
           </h1>
           <p className="text-sm md:text-base text-slate-350 leading-relaxed font-sans font-light">
-            Zero Registrations. Client-First Isolation and Encryption. Securely process payload strings, payload data, metadata, and files entirely within local device memory.
+            Zero Registrations. Client-First Isolation and Encryption. Securely process payload strings entirely within local device memory.
           </p>
           
           <div className="pt-2 max-w-md relative">
@@ -231,7 +223,7 @@ function DashboardPage({ searchQuery, setSearchQuery }: { searchQuery: string; s
 }
 
 /* ==========================================================================
-   PAGE: TOOL RUNNER (Active tool workspace core with Smartlink Integration)
+   PAGE: TOOL RUNNER (Active tool workspace core)
    ========================================================================== */
 function ToolRunnerPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -263,7 +255,7 @@ function ToolRunnerPage() {
             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest font-mono">Recommend workbench:</span>
             <div className="flex flex-wrap items-center gap-1.5">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Boost performance and format code securely with premium ${tool.name} fully client-side on NexusUtils!`)}&url=${encodeURIComponent(`https://nexusutils.online/tools/${tool.slug}`)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Boost performance securely with ${tool.name} fully client-side on NexusUtils!`)}&url=${encodeURIComponent(`https://nexusutils.online/tools/${tool.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1 px-2 border border-slate-200 dark:border-slate-850 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-905 text-[10px] flex items-center gap-1 text-slate-600 dark:text-slate-400 font-semibold"
@@ -309,12 +301,12 @@ function ToolRunnerPage() {
         {tool.id === 'pdf-hub' && <PDFHub />}
       </section>
 
-      {/* دمج الـ Smartlink الترويجي بطريقة أصلية وطبيعية كإعلان بانر داخل صفحة الأداة */}
+      {/* الـ Smartlink الإعلاني بصيغة عرض بنية تحتية تقنية */}
       <section className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
         <div className="space-y-1 text-center sm:text-left">
           <span className="text-[10px] font-mono font-bold uppercase tracking-widest bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full border border-blue-500/30">Partner Infrastructure</span>
           <h4 className="font-display font-bold text-sm sm:text-base">Need Scalable Enterprise Computing Cloud?</h4>
-          <p className="text-xs text-slate-400 max-w-xl">Accelerate performance workflows with redundant secure execution nodes. Deploy distributed computing frameworks across worldwide regions instantly.</p>
+          <p className="text-xs text-slate-400 max-w-xl">Accelerate performance workflows with redundant secure execution nodes across worldwide regions instantly.</p>
         </div>
         <a 
           href="https://www.effectivecpmnetwork.com/hcak2ak7?key=61ce18b1365bd02ec50882ca14064338" 
@@ -333,7 +325,7 @@ function ToolRunnerPage() {
           <HelpCircle className="h-8 w-8 text-blue-500" />
           <h3 className="font-display font-bold text-lg text-slate-900 dark:text-slate-50">Scientific Tool Documentation</h3>
           <p className="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
-            Designed and compiled utilizing low-overhead compilation engines, guaranteeing that your values remain safe from network tracking tags. Explore answers to mechanical questions nearby.
+            Designed and compiled utilizing low-overhead compilation engines, guaranteeing your values remain safe.
           </p>
         </div>
 
@@ -341,7 +333,7 @@ function ToolRunnerPage() {
           <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-5 border border-slate-150 dark:border-slate-800">
             <span className="font-semibold text-xs block text-slate-850 dark:text-slate-100">Does {tool.name} transfer data blocks to servers?</span>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-              No. Our workspace runs 100% on client JS. No data inputs reach external routes, except when leveraging optional AI content modules proxied safely under SSL layers.
+              No. Our workspace runs 100% on client-side JS memory allocation securely.
             </p>
           </div>
         </div>
@@ -352,31 +344,17 @@ function ToolRunnerPage() {
 }
 
 /* ==========================================================================
-   PAGE: TOOL GUIDES (High-value contextual guides for AdSense compliance)
+   PAGE: TOOL GUIDES
    ========================================================================== */
-function ToolGuideSection({ toolId, toolName }: { toolId: string; toolName: string }) {
+function ToolGuideSection({ toolName }: { toolId: string; toolName: string }) {
   return (
     <article className="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 md:p-8 space-y-4 text-xs font-sans text-slate-600 dark:text-slate-400 leading-relaxed font-light">
       <h2 className="font-display font-bold text-base text-slate-900 dark:text-white uppercase tracking-wider font-mono text-left">
         {toolName} Implementation Checklist &amp; Operational Matrix
       </h2>
       <p className="text-left">
-        When executing software compilation within an asynchronous JavaScript workspace framework, developers face common challenges regarding stack tracing variables, character sets handling, and volatile local memory leaks. The architecture of {toolName} deployed on NexusUtils eliminates multi-threaded overhead requirements by operating within isolated sandboxed execution scopes. This process ensures runtime operations execute inside a safe single-thread model directly linked to your local device CPU core.
+        When executing software compilation within an asynchronous JavaScript workspace framework, the architecture deployed on NexusUtils eliminates multi-threaded overhead requirements by operating within isolated sandboxed execution scopes.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 text-left">
-        <div className="space-y-2">
-          <h4 className="font-bold text-slate-850 dark:text-slate-200 text-[11px] font-mono">1. Local Host Processing Framework</h4>
-          <p>
-            Traditional systems transmit string operations over exposed APIs to back-end node microservices. This pipeline exposes data strings to tracking nodes, data packet captures, and server file system logs. Our engine forces processing arrays to operate completely inside local system boundaries.
-          </p>
-        </div>
-        <div className="space-y-2">
-          <h4 className="font-bold text-slate-850 dark:text-slate-200 text-[11px] font-mono">2. Compilation Standards Checklists</h4>
-          <p>
-            To cross-compile generated data formats cleanly across cross-platform frameworks, the application tests active variable blocks against W3C compliance modules. This step ensures scripts process safely without throwing unhandled exceptions in browser viewports.
-          </p>
-        </div>
-      </div>
     </article>
   );
 }
@@ -389,7 +367,6 @@ function ResourcesPage() {
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-10 text-left">
       <div className="space-y-2 border-b border-slate-200 dark:border-slate-850 pb-5">
         <h1 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white">Developer Specifications Library</h1>
-        <p className="text-xs text-slate-500">Curated industrial resources, network validation whitepapers, and software framework documentations.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {resources.map((item, index) => (
@@ -413,7 +390,6 @@ function FAQsPage() {
     <div className="max-w-3xl mx-auto px-4 py-10 space-y-8 text-left">
       <div className="space-y-2 border-b border-slate-200 dark:border-slate-850 pb-5">
         <h1 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white">Technical Architecture FAQ</h1>
-        <p className="text-xs text-slate-500">Deep architectural answers regarding state machines, memory limits, and platform mechanics.</p>
       </div>
       <div className="space-y-4">
         {faqs.map((faq, idx) => (
@@ -438,14 +414,13 @@ function FAQsPage() {
 }
 
 /* ==========================================================================
-   PAGE: KNOWLEDGE BASE INDEX (SEO Blog system)
+   PAGE: KNOWLEDGE BASE INDEX
    ========================================================================== */
 function BlogIndexPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-10 text-left">
       <div className="space-y-2 border-b border-slate-200 dark:border-slate-850 pb-5">
         <h1 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white">NexusUtils Technical Chronicle</h1>
-        <p className="text-xs text-slate-500">Expert engineering publications regarding client-side data safety, SEO structures, and workflow automation guidelines.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {blogArticles.map((article) => (
@@ -489,7 +464,7 @@ function BlogArticlePage() {
 }
 
 /* ==========================================================================
-   PAGE: STANDARD SYSTEM EXCEPTION (451/404 Handler)
+   PAGE: NOT FOUND
    ========================================================================== */
 function NotFoundPage() {
   return (
@@ -498,7 +473,7 @@ function NotFoundPage() {
         <AlertCircle className="h-8 w-8" />
       </div>
       <h2 className="font-display font-black text-xl tracking-tight text-slate-900 dark:text-white">Workspace Context Lost</h2>
-      <p className="text-xs text-slate-500 leading-normal max-w-xs mx-auto font-light">The tool node pointer, utility resource category string, or document directory link you targeted cannot be verified in local index registers.</p>
+      <p className="text-xs text-slate-500 leading-normal max-w-xs mx-auto font-light">The resource pointer targeted cannot be verified.</p>
       <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold font-mono px-5 py-2.5 rounded-xl uppercase tracking-wide transition-all shadow-sm">
         Return Home
       </Link>
