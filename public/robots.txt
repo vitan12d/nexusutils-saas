@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /match/
+Allow: /news/
+
+# Sitemaps
+Sitemap: https://kooraspring.example.com/sitemap.xml
