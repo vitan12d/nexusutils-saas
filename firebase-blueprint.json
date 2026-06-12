@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "Match": {
+      "title": "Match",
+      "description": "Represents a football match with real-time analytics, stats, and lineups",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "leagueId": { "type": "string" },
+        "homeTeam": { "type": "object" },
+        "awayTeam": { "type": "object" },
+        "status": { "type": "string", "enum": ["LIVE", "FINISHED", "UPCOMING"] },
+        "homeScore": { "type": "number" },
+        "awayScore": { "type": "number" },
+        "minute": { "type": "number" },
+        "date": { "type": "string" },
+        "displayTime": { "type": "string" },
+        "stadium": { "type": "string" },
+        "referee": { "type": "string" },
+        "tvChannel": { "type": "string" },
+        "commentator": { "type": "string" },
+        "lineups": { "type": "object" },
+        "stats": { "type": "array" },
+        "headToHead": { "type": "array" },
+        "reportTitle": { "type": "string" },
+        "reportArticle": { "type": "string" },
+        "embedUrl": { "type": "string" }
+      },
+      "required": ["id", "leagueId", "homeTeam", "awayTeam", "status", "date", "displayTime"]
+    },
+    "NewsArticle": {
+      "title": "NewsArticle",
+      "description": "A dynamic sports news article complete with rich text paragraphs for ad injection",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "array" },
+        "date": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "matchId": { "type": "string" }
+      },
+      "required": ["id", "title", "summary", "content", "date", "category", "imageUrl"]
+    }
+  },
+  "firestore": {
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "The active soccer matches indexed in the live score system"
+    },
+    "/news/{newsId}": {
+      "schema": "NewsArticle",
+      "description": "The dynamic sports editorial news articles"
+    }
+  }
+}

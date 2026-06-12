@@ -1,0 +1,6 @@
+{
+  "name": "Football Live Score & Sports Analytics Platform",
+  "description": "Your ultimate hub for global football matches, real-time live scores, professional lineups, head-to-head records, semantic sport news, and responsive high-CTR AdSense placeholders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
