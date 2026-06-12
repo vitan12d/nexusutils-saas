@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage (Nexus Korra Core Matches Schedule) -->
+  <url>
+    <loc>https://nexusutils.com/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>always</changefreq>
+    <priority>1.00</priority>
+  </url>
+  
+  <!-- Privacy Policy Section -->
+  <url>
+    <loc>https://nexusutils.com/privacy</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Terms of Service Section -->
+  <url>
+    <loc>https://nexusutils.com/terms</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Cookies Policy Section -->
+  <url>
+    <loc>https://nexusutils.com/cookies</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.30</priority>
+  </url>
+</urlset>

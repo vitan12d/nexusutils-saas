@@ -1,0 +1,11 @@
+# robots.txt for Nexus Korra (Nexusutils)
+User-agent: *
+Allow: /
+
+# Disallow indexing on backend APIs and admin settings
+Disallow: /api/
+Disallow: /admin
+
+# Sitemap URL
+Sitemap: https://nexusutils.com/sitemap.xml
+Sitemap: /sitemap.xml
