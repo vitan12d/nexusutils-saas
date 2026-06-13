@@ -1,7 +1,0 @@
-# Google AdSense Setup
-# Replace "pub-0000000000000000" with your actual Google AdSense Publisher ID
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-
-# Adsterra Advertising Network
-# If you have custom Adsterra lines, you can append them below:
-# example_network.com, subscriber_id, DIRECT/RESSELER, sign_id
