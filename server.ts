@@ -181,9 +181,14 @@ async function fetchFootballApi(endpointPath: string): Promise<any> {
   }
 
   // 2. Perform fetch from external API-Sports service if API Key exists
-  const apiKey = process.env.RAPIDAPI_KEY || 'YOUR_DIRECT_API_SPORTS_KEY';
-  if (!process.env.RAPIDAPI_KEY || process.env.RAPIDAPI_KEY === 'YOUR_RAPIDAPI_KEY_HERE') {
-    console.log(`[API-Sports] No API key detected or placeholder key is used. Triggering beautiful mock database fallbacks.`);
+  const apiKey = (process.env.APISPORTS_KEY || process.env.RAPIDAPI_KEY || '').trim();
+  const isKeyInvalid = !apiKey || 
+                       apiKey === 'YOUR_RAPIDAPI_KEY_HERE' || 
+                       apiKey === 'YOUR_DIRECT_API_SPORTS_KEY' || 
+                       apiKey === '';
+
+  if (isKeyInvalid) {
+    console.log(`[API-Sports] No valid API-Sports key detected in env variables (APISPORTS_KEY or RAPIDAPI_KEY). Using secure local fallback mock database.`);
     throw new Error('Missing Key');
   }
 
