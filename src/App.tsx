@@ -1174,30 +1174,6 @@ export default function App() {
                     </p>
                   </div>
 
-                  {/* Manual stream input injector (to test HLS, .mp4, or iframe player links) */}
-                  <div className="p-3 bg-gray-50 border-t border-gray-100">
-                    <form onSubmit={handleApplyCustomStream} className="space-y-2">
-                      <div className="flex flex-col sm:flex-row gap-2">
-                        <input 
-                          type="text"
-                          value={customStreamInput}
-                          onChange={(e) => setCustomStreamInput(e.target.value)}
-                          placeholder="ألصق كود Iframe للبث، أو رابط HLS (.m3u8)، أو فيديو للتجربة..."
-                          className="flex-grow bg-white border border-[#e2e8f0] px-3 py-2 text-xs rounded-[2px] shadow-none focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
-                        />
-                        <button 
-                          type="submit"
-                          className="bg-[#07162c] hover:bg-[#122e51] text-[#D4AF37] transition-all font-bold px-4 py-2 text-xs rounded-[2px] whitespace-nowrap cursor-pointer flex items-center justify-center gap-1 shadow-none"
-                        >
-                          <Play className="w-3.5 h-3.5" />
-                          تشغيل القناة المخصصة
-                        </button>
-                      </div>
-                      <p className="text-[10px] text-gray-500 font-medium">
-                        * يمكنك بسهولة تضمين قنوات البث ومولدات الأكواد iframe الخارجية بمثالية وأمان تام دون التأثير نهائياً على المظهر والاستقرار.
-                      </p>
-                    </form>
-                  </div>
 
                   {/* Quick toggle channel selector */}
                   <div className="p-3 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-2 bg-white">
