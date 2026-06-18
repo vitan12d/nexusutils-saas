@@ -1,0 +1,13 @@
+# Robots.txt for Nexus Utils - FIFA World Cup Hub
+# Optimized for maximum Google indexing, Google News, and AdSense crawlers
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Specialized User-Agent optimizations for maximized AdSense approval
+User-agent: Mediapartners-Google
+Allow: /
+
+# Sitemap absolute reference
+Sitemap: https://ais-pre-75yl7mbcpnp5phqjan2ry6-4346950018.europe-west3.run.app/sitemap.xml

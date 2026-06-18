@@ -1,0 +1,3 @@
+# Google AdSense Authorized Sellers list for Nexus Utils
+# Keep your ad inventory authorized and replace "pub-0000000000000000" with your actual publisher ID once ready
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

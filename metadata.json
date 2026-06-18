@@ -1,0 +1,6 @@
+{
+  "name": "Nexus Utils - FIFA World Cup",
+  "description": "A responsive Nexus Utils FIFA World Cup soccer hub in Arabic, featuring live scores, news, tournament standings, and schedule.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
