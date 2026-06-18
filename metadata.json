@@ -1,6 +1,0 @@
-{
-  "name": "Nexus live kooora",
-  "description": "منصة نكسس لايف كورة الرياضية - بث مباشر، نتائج مباريات اليوم، ترتيب المجموعات، وأحدث الأخبار الرياضية العربية والعالمية.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
