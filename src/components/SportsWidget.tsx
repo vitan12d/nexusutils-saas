@@ -28,7 +28,7 @@ export default function SportsWidget() {
       }
 
       try {
-        const response = await fetch('https://v3.football.api-sports.io/fixtures?live=all', {
+        const response = await fetch('https://v3.football.api-sports.io/fixtures?league=39&season=2025', {
           headers: {
             'x-rapidapi-key': apiKey,
             'x-rapidapi-host': 'v3.football.api-sports.io'
