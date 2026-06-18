@@ -5,7 +5,9 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'media.api-sports.io' }
     ]
-  }
+  },
+  // الإعداد السحري لتعطيل المصنف المتسبب في خطأ معالجة الحروف العربية والـ RTL
+  swcMinify: false
 };
 
 module.exports = nextConfig;
