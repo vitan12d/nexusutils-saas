@@ -760,8 +760,8 @@ export default function App() {
       setApiLoading(true);
       setApiError(null);
       
-      const mappedStandings = await getStandings('1', seasonToLoad, isEn);
-      const mappedFixtures = await getLeagueFixtures('1', seasonToLoad, isEn);
+      const mappedStandings = await getStandings('39', '2025', isEn);
+      const mappedFixtures = await getLeagueFixtures('39', '2025', isEn);
       
       if (mappedStandings.length > 0) {
         setGroupsData(mappedStandings);
@@ -784,7 +784,7 @@ export default function App() {
 
       // Fetch Top Scorers Dynamically
       try {
-        const mappedScorers = await getTopScorers('1', seasonToLoad, isEn);
+        const mappedScorers = await getTopScorers('39', '2025', isEn);
         if (mappedScorers.length > 0) {
           setScorers(mappedScorers);
         } else {
