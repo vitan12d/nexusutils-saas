@@ -13,26 +13,26 @@ const BASE_URL = "https://v3.football.api-sports.io";
  * server proxy fallbacks to avoid CORS issues, and error extraction.
  */
 async function fetchFromApi(endpoint: string, queryParams: Record<string, string> = {}): Promise<any> {
-  const clientApiKey = (import.meta as any).env?.VITE_API_FOOTBALL_KEY || '';
-  const queryStr = new URLSearchParams(queryParams).toString();
-  
-  let targetUrl = `${BASE_URL}/${endpoint}${queryStr ? '?' + queryStr : ''}`;
-  const headers: Record<string, string> = {
-    "x-apisports-key": clientApiKey
-  };
-
-  // If no public key is found, fall back to our secure local server proxy
-  if (!clientApiKey) {
-    console.warn(`[API-Football Client Warning] VITE_API_FOOTBALL_KEY environment variable is missing in the browser environment. Routing call to full-stack secure proxy.`);
-    targetUrl = `/api/football/${endpoint}${queryStr ? '?' + queryStr : ''}`;
+  const apiKey = (import.meta as any).env?.VITE_FOOTBALL_API_KEY || '';
+  if (!apiKey) {
+    console.error(`[API-Football] VITE_FOOTBALL_API_KEY is missing!`);
+    throw new Error("API key is missing.");
   }
+
+  const queryStr = new URLSearchParams(queryParams).toString();
+  const targetUrl = `${BASE_URL}/${endpoint}${queryStr ? '?' + queryStr : ''}`;
+  
+  const headers: Record<string, string> = {
+    "x-rapidapi-key": apiKey,
+    "x-rapidapi-host": "v3.football.api-sports.io"
+  };
 
   console.log(`[API-Football Request Direct-Log] Endpoint: ${endpoint} | URL target: ${targetUrl} | Query:`, queryParams);
 
   try {
     const response = await fetch(targetUrl, {
       method: 'GET',
-      headers: clientApiKey ? headers : undefined,
+      headers: headers,
     });
 
     console.log(`[API-Football Response Direct-Log] Status: ${response.status} for endpoint: ${endpoint}`);
