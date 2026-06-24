@@ -1,0 +1,157 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a user profile in NexusUtils.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The unique Firebase UID of the user."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "URL to the user's profile picture."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user account was created."
+        },
+        "premiumTier": {
+          "type": "boolean",
+          "description": "Whether the user is in the premium tier."
+        }
+      },
+      "required": [
+        "uid",
+        "email",
+        "createdAt"
+      ]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "User suggestions, issue reports, or general feedback.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The UID of the user who submitted feedback (or null if anonymous)."
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "Email address of the feedback submitter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "suggestion",
+            "issue",
+            "feedback"
+          ],
+          "description": "Category of feedback."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Brief summary of the feedback topic."
+        },
+        "message": {
+          "type": "string",
+          "description": "Exhaustive content or report."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When feedback was submitted."
+        }
+      },
+      "required": [
+        "type",
+        "message",
+        "createdAt"
+      ]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "Professional articles for tools and site content.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "toolId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "createdAt"]
+    },
+    "News": {
+      "title": "News",
+      "description": "Site news and updates.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "createdAt"]
+    },
+    "File": {
+      "title": "File",
+      "description": "Files available for download.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "url", "category", "createdAt"]
+    },
+    "N8n": {
+      "title": "N8nAutomation",
+      "description": "N8n automation workflows.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "fileUrl": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "description", "fileUrl", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Holds the profile database record of users, locked to the authentic owners."
+    },
+    "feedback/{feedbackId}": {
+      "schema": "Feedback",
+      "description": "User feedback reports, submission-only for authenticated/unauthenticated users; read-only for admins."
+    },
+    "articles/{articleId}": {
+      "schema": "Article",
+      "description": "Professional articles."
+    },
+    "news/{newsId}": {
+      "schema": "News",
+      "description": "Site news."
+    },
+    "files/{fileId}": {
+      "schema": "File",
+      "description": "Downloadable files."
+    },
+    "n8n/{n8nId}": {
+      "schema": "N8n",
+      "description": "n8n automations."
+    }
+  }
+}

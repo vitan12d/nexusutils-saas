@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /resources/
+Allow: /blog/
+Allow: /tools/
+Allow: /guides/
+Allow: /checklists/
+Allow: /templates/
+Allow: /examples/
+Allow: /compare/
+Allow: /growth
+Allow: /seo
+
+# Prevent crawling of source folders, configuration assets, and internal parameters
+Disallow: /src/
+Disallow: /firebase-*.json
+Disallow: /package*.json
+Disallow: /tsconfig.json
+Disallow: /metadata.json
+Disallow: /vite.config.ts
+Disallow: /.env*
+Disallow: /api/
+
+# Primary Sitemap Index
+Sitemap: https://nexusutils.online/sitemap.xml
+
+# Canonical Host
+Host: https://nexusutils.online
